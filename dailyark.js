@@ -308,7 +308,7 @@ const checkReset = function(timeFrame) {
     let updateTime = new Date(parseInt(tableUpdateTime));
 
     let nextdate = new Date();
-    nextdate.setUTCHours(0);
+    nextdate.setUTCHours(10);
     nextdate.setUTCMinutes(0);
     nextdate.setUTCSeconds(0);
 
