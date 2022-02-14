@@ -2,7 +2,7 @@
 # DailyArk - Dailies and Weeklies for Lost Ark
 
 ## Features
-* List of dailies and weekliesfor Runescape 3
+* List of dailies and weeklies for Lost Ark
 * Click the red area in right column (incomplete) to switch to green (completed)
 * Brief comments on the benefits of completing the task
 * Links to papunika or other relevant pages with further info (if available)
