@@ -95,6 +95,9 @@
             <thead>
                 <tr>
                     <th>Dailies <span id="countdown-dailies" class="countdown"></span></th>
+                    <td nowrap>
+                        Character or Roster
+                    </td>
                     <td>
                         <span class="text-nowrap">
                             <button id="dailies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text">Hide</span></button>
@@ -113,6 +116,9 @@
             <thead>
                 <tr>
                     <th>Weeklies <span id="countdown-weeklies" class="countdown"></span></th>
+                    <td nowrap>
+                        Character or Roster
+                    </td>
                     <td>
                         <span class="text-nowrap">
                             <button id="weeklies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text">Hide</span></button>
@@ -129,8 +135,15 @@
 
 <template id="sample_row">
     <tr draggable="true">
-        <td class="activity_name" draggable="false"><a target="_blank" rel="noopener noreferrer" draggable="false">Name</a><button class="hide-button expanding_button btn btn-danger btn-sm active">⊘<span class="expanding_text">Hide</span></button></td>
-        <td class="activity_color"><span class="activity_check_off">☐</span><span class="activity_check_on">☑</span><span class="activity_desc">&nbsp;</span></td>
+        <td class="activity_name" draggable="false">
+            <a target="_blank" rel="noopener noreferrer" draggable="false">Name</a><button class="hide-button expanding_button btn btn-danger btn-sm active">⊘<span class="expanding_text">Hide</span></button>
+        </td>
+        <td>
+            <span class="activity_roster">&nbsp;</span>
+        </td>
+        <td class="activity_color">
+            <span class="activity_check_off">☐</span><span class="activity_check_on">☑</span><span class="activity_desc">&nbsp;</span>
+        </td>
     </tr>
 </template>
 

@@ -8,31 +8,31 @@ var dragRow; //global for currently dragged row
 var totalDailyProfit = 0; //global for total daily profit, maybe move this
 
 var dailies = {
-    "chaos-dungeon": {task: "Chaos Dungeon", url: "https://lostarkive.com/guides/endgame/chaos-dungeons/", short: true, desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.</br>Energy restored per Character."},
-    "guardian-raid": {task: "Guardian Raid", url: "https://papunika.com/guardian-subjugations/", short: true, desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.</br>Guardian souls restored per Character."},
-    "una-daily" : {task: "Una Daily", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3."},
-    "adventure-island" : {task: "Adventure Island", url: "https://lostarkive.com/guides/beginner/sea-activities/", short: true, desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00."},
-    "voyage-coop-mission" : {task: "Vooyage Co-Op Mission", url: "https://papunika.com/voyage-guide/", short: true, desc: "Appears multiple times per day."},
-    "trade-skill" : {task: "Trade Skill", url: "https://papunika.com/life-skill/", short: true, desc: "Until energy is depleted."},
-    "guild-support" : {task: "Guild Support", url: "#", short: true, desc: "1 Donation per day.</br>1 Research Support per day."},
-    "rapport-actions" : {task: "Rapport Actions", url: "https://papunika.com/affinity/", short: true, desc: "5 Songs per day (+1 with Blessing).</br>5 Emotes per day (+1 with Blessing)."},
-    "world-boss" : {task: "World Boss", url: "#", short: true, desc: "Once per day (only on specific days)."},
-    "chaos-gate" : {task: "Chaos Gate", url: "#", short: true, desc: "At specific times."},
+    "chaos-dungeon": {task: "Chaos Dungeon", url: "https://lostarkive.com/guides/endgame/chaos-dungeons/", short: true, desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.", roster: false},
+    "guardian-raid": {task: "Guardian Raid", url: "https://papunika.com/guardian-subjugations/", short: true, desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.", roster: false},
+    "una-daily" : {task: "Una Daily", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
+    "trade-skill" : {task: "Trade Skill", url: "https://papunika.com/life-skill/", short: true, desc: "Until energy is depleted.", roster: false},
+    "guild-support" : {task: "Guild Support", url: "#", short: true, desc: "1 Donation per day.</br>1 Research Support per day.", roster: false},
+    "adventure-island" : {task: "Adventure Island", url: "https://lostarkive.com/guides/beginner/sea-activities/", short: true, desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00.", roster: true},
+    "voyage-coop-mission" : {task: "Vooyage Co-Op Mission", url: "https://papunika.com/voyage-guide/", short: true, desc: "Appears multiple times per day.", roster: true},
+    "rapport-actions" : {task: "Rapport Actions", url: "https://papunika.com/affinity/", short: true, desc: "5 Songs per day (+1 with Blessing).</br>5 Emotes per day (+1 with Blessing).", roster: true},
+    "world-boss" : {task: "World Boss", url: "#", short: true, desc: "Once per day (only on specific days).", roster: true},
+    "chaos-gate" : {task: "Chaos Gate", url: "#", short: true, desc: "At specific times.", roster: true},
 };
 
 var weeklies = {
-    "guardian-challenge-mode": {task: "Guardian Challenge Mode", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).</br>Availability is per character."},
-    "abyss-dungeon" : {task: "Abyss Dungeon", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>Availability is per character.</br>You can only complete one difficulty per week."},
-    "challenge-abyss-dungeon" : {task: "Challenge Abyss Dungeon", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "1 per week per Challenge Abyss Dungeon.</br>Availability is once per account."},
-    "abyss-raid" : {task: "Abyss Raid", url: "https://papunika.com/abyss-raids/", short: true, desc: "1 per week per Abyss Raid.</br>Availability is per character."},
-    "legion-raid" : {task: "Legion Raid", url: "https://papunika.com/legion-raids/", short: true, desc: "1 per week (shared between difficutlies).</br>Availability is per character."},
-    "una-weekly" : {task: "Una Weekly", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1."},
-    "gvg-guild-boss" : {task: "GVG / Guild Boss", url: "#", short: true, desc: "Once per week."},
-    "merchant-ship-exchange" : {task: "Merchant Ship Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset."},
-    "silmael-bloodstone-exchange" : {task: "Silmael Bloodstone Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset."},
-    "pvp-token-exchange" : {task: "PVP Token Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset."},
-    "ghost-ship" : {task: "Ghost Ship", url: "https://lostarkive.com/guides/beginner/sea-activities/", short: true, desc: "At specific times."},
-    "pvp-island" : {task: "PVP Island", url: "#", short: true, desc: "Determined by the occupying guild."},
+    "guardian-challenge-mode": {task: "Guardian Challenge Mode", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
+    "abyss-dungeon" : {task: "Abyss Dungeon", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
+    "abyss-raid" : {task: "Abyss Raid", url: "https://papunika.com/abyss-raids/", short: true, desc: "1 per week per Abyss Raid.", roster: false},
+    "legion-raid" : {task: "Legion Raid", url: "https://papunika.com/legion-raids/", short: true, desc: "1 per week (shared between difficutlies).", roster: false},
+    "una-weekly" : {task: "Una Weekly", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
+    "challenge-abyss-dungeon" : {task: "Challenge Abyss Dungeon", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "1 per week per Challenge Abyss Dungeon.", roster: true},
+    "gvg-guild-boss" : {task: "GVG / Guild Boss", url: "#", short: true, desc: "Once per week.", roster: true},
+    "merchant-ship-exchange" : {task: "Merchant Ship Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset.", roster: true},
+    "silmael-bloodstone-exchange" : {task: "Silmael Bloodstone Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset.", roster: true},
+    "pvp-token-exchange" : {task: "PVP Token Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset.", roster: true},
+    "ghost-ship" : {task: "Ghost Ship", url: "https://lostarkive.com/guides/beginner/sea-activities/", short: true, desc: "At specific times.", roster: true},
+    "pvp-island" : {task: "PVP Island", url: "#", short: true, desc: "Determined by the occupying guild.", roster: true},
 };
 
 /**
@@ -74,6 +74,7 @@ const populateTable = function(timeFrame) {
         let newRow = rowClone.querySelector('tr');
         let newRowAnchor = rowClone.querySelector('td.activity_name a');
         let newRowColor = rowClone.querySelector('td.activity_color .activity_desc');
+        let newRowRoster = rowClone.querySelector('span.activity_roster');
 
         let taskState = storage.getItem(profilePrefix + taskSlug) ?? 'false';
 
@@ -82,18 +83,24 @@ const populateTable = function(timeFrame) {
         if (!!data[taskSlug].url) {
             if(data[taskSlug].url !== "#"){
                 newRowAnchor.href = data[taskSlug].url;
-            }
-            newRowAnchor.innerHTML = data[taskSlug].task;
+            } 
+        }
 
-            if (!!data[taskSlug].desc) {
-                newRowColor.innerHTML = data[taskSlug].desc;
-            }
-        } else {
-            newRowAnchor.innerHTML = data[taskSlug].task;
+        newRowAnchor.innerHTML = data[taskSlug].task;
+
+        if (data[taskSlug].roster === true){
+            newRowRoster.innerHTML = "Roster";
+        }
+        if (data[taskSlug].roster === false){
+            newRowRoster.innerHTML = "Character";
+        }
+
+        if (!!data[taskSlug].desc) {
+            newRowColor.innerHTML = data[taskSlug].desc;
         }
 
         tbody.appendChild(newRow);
-        newRow.dataset.completed = 'false';
+        newRow.dataset.completed = taskState;
     }
 
     if (['asc', 'desc', 'alpha'].includes(customOrder)) {
