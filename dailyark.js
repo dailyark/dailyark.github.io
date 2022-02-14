@@ -271,7 +271,6 @@ const resettableSection = function(timeFrame) {
 const hidableSection = function(timeFrame) {
     let hideButton = document.querySelector('#' + timeFrame + '_hide_button');
     hideButton.addEventListener('click', function () {
-        console.log(timeFrame);
         let hideTable = document.querySelector('div.' + timeFrame + '_table');
         hideTable.dataset.hide = 'hide';
         storage.setItem(profilePrefix + timeFrame + '-hide', 'hide');
@@ -307,6 +306,7 @@ const checkReset = function(timeFrame) {
 
     let updateTime = new Date(parseInt(tableUpdateTime));
 
+
     let nextdate = new Date();
     nextdate.setUTCHours(10);
     nextdate.setUTCMinutes(0);
@@ -318,6 +318,7 @@ const checkReset = function(timeFrame) {
         let weekmodifier = (7 - resetday + nextdate.getUTCDay()) % 7;
         nextdate.setUTCDate(nextdate.getUTCDate() - weekmodifier);
     }
+
     if (updateTime.getTime() < nextdate.getTime()) {
         resetTable(timeFrame, true);
     }
@@ -341,6 +342,8 @@ const countDown = function(timeFrame) {
         nextdate.setUTCHours(10);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
+        let weekmodifier = (2 - nextdate.getUTCDay() ) % 7;
+        nextdate.setUTCDate(nextdate.getUTCDate() + weekmodifier);
     }
 
     let nowtime = new Date();
