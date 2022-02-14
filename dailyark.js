@@ -5,27 +5,37 @@ var currentProfile = 'default';
 var currentLayout = 'default';
 var profilePrefix = '';
 var dragRow; //global for currently dragged row
-var totalDailyProfit = 0; //global for total daily profit, maybe move this
 
 var dailies = {
-    "chaos-dungeon": {task: "Chaos Dungeon", url: "https://lostarkive.com/guides/endgame/chaos-dungeons/", short: true, desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.", roster: false},
-    "guardian-raid": {task: "Guardian Raid", url: "https://papunika.com/guardian-subjugations/", short: true, desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.", roster: false},
-    "una-daily" : {task: "Una Daily", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
+    "chaos-dungeon": {task: "Chaos Dungeon 1", url: "https://lostarkive.com/guides/endgame/chaos-dungeons/", short: true, desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.", roster: false},
+    "chaos-dungeon-2": {task: "Chaos Dungeon 2", url: "https://lostarkive.com/guides/endgame/chaos-dungeons/", short: true, desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.", roster: false},
+    "guardian-raid": {task: "Guardian Raid 1", url: "https://papunika.com/guardian-subjugations/", short: true, desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.", roster: false},
+    "guardian-raid-2": {task: "Guardian Raid 2", url: "https://papunika.com/guardian-subjugations/", short: true, desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.", roster: false},
+    "una-daily" : {task: "Una Daily 1", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
+    "una-daily-2" : {task: "Una Daily 2", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
+    "una-daily-3" : {task: "Una Daily 3", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
     "trade-skill" : {task: "Trade Skill", url: "https://papunika.com/life-skill/", short: true, desc: "Until energy is depleted.", roster: false},
     "guild-support" : {task: "Guild Support", url: "#", short: true, desc: "1 Donation per day.</br>1 Research Support per day.", roster: false},
+    "rapport-actions-songs" : {task: "Rapport Songs", url: "https://papunika.com/affinity/", short: true, desc: "5 Songs per day (+1 with Blessing)..", roster: true},
+    "rapport-actions-emotes" : {task: "Rapport Emotes", url: "https://papunika.com/affinity/", short: true, desc: "5 Emotes per day (+1 with Blessing).", roster: true},
     "adventure-island" : {task: "Adventure Island", url: "https://lostarkive.com/guides/beginner/sea-activities/", short: true, desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00.", roster: true},
     "voyage-coop-mission" : {task: "Vooyage Co-Op Mission", url: "https://papunika.com/voyage-guide/", short: true, desc: "Appears multiple times per day.", roster: true},
-    "rapport-actions" : {task: "Rapport Actions", url: "https://papunika.com/affinity/", short: true, desc: "5 Songs per day (+1 with Blessing).</br>5 Emotes per day (+1 with Blessing).", roster: true},
     "world-boss" : {task: "World Boss", url: "#", short: true, desc: "Once per day (only on specific days).", roster: true},
     "chaos-gate" : {task: "Chaos Gate", url: "#", short: true, desc: "At specific times.", roster: true},
 };
 
 var weeklies = {
-    "guardian-challenge-mode": {task: "Guardian Challenge Mode", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
-    "abyss-dungeon" : {task: "Abyss Dungeon", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
+    "guardian-challenge-mode": {task: "Guardian Challenge Mode 1", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
+    "guardian-challenge-mode-2": {task: "Guardian Challenge Mode 2", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
+    "guardian-challenge-mode-2": {task: "Guardian Challenge Mode 3", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
+    "abyss-dungeon" : {task: "Abyss Dungeon 1", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
+    "abyss-dungeon-2" : {task: "Abyss Dungeon 2", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
+    "abyss-dungeon-3" : {task: "Abyss Dungeon 3", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
+    "una-weekly" : {task: "Una Weekly 1", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
+    "una-weekly-2" : {task: "Una Weekly 2", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
+    "una-weekly-3" : {task: "Una Weekly 3", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
     "abyss-raid" : {task: "Abyss Raid", url: "https://papunika.com/abyss-raids/", short: true, desc: "1 per week per Abyss Raid.", roster: false},
     "legion-raid" : {task: "Legion Raid", url: "https://papunika.com/legion-raids/", short: true, desc: "1 per week (shared between difficutlies).", roster: false},
-    "una-weekly" : {task: "Una Weekly", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
     "challenge-abyss-dungeon" : {task: "Challenge Abyss Dungeon", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "1 per week per Challenge Abyss Dungeon.", roster: true},
     "gvg-guild-boss" : {task: "GVG / Guild Boss", url: "#", short: true, desc: "Once per week.", roster: true},
     "merchant-ship-exchange" : {task: "Merchant Ship Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset.", roster: true},

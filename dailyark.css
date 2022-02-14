@@ -276,7 +276,6 @@ div.table_container[data-hide="hide"] .unhide_button {
 .compact .activity_table tbody tr {
     position: relative;
     display: flex;
-    flex-direction: row-reverse;
     justify-content: center;
 }
 
@@ -285,6 +284,10 @@ div.table_container[data-hide="hide"] .unhide_button {
 }
 
 .compact .activity_table tbody tr[data-completed="hide"] {
+    display: none;
+}
+
+.compact td.activity_roster {
     display: none;
 }
 
@@ -297,7 +300,6 @@ div.table_container[data-hide="hide"] .unhide_button {
 .compact .activity_table td.activity_name {
     min-height: 48px;
     display: flex;
-    flex-direction: row-reverse;
 }
 
 .compact .activity_table td.activity_name a,
