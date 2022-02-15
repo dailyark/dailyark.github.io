@@ -27,7 +27,7 @@ var dailies = {
 var weeklies = {
     "guardian-challenge-mode": {task: "Guardian Challenge Mode 1", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
     "guardian-challenge-mode-2": {task: "Guardian Challenge Mode 2", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
-    "guardian-challenge-mode-2": {task: "Guardian Challenge Mode 3", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
+    "guardian-challenge-mode-3": {task: "Guardian Challenge Mode 3", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
     "abyss-dungeon" : {task: "Abyss Dungeon 1", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
     "abyss-dungeon-2" : {task: "Abyss Dungeon 2", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
     "abyss-dungeon-3" : {task: "Abyss Dungeon 3", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
