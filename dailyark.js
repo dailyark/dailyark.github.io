@@ -315,6 +315,8 @@ const hidableSection = function(timeFrame) {
  * @returns
  */
 const checkReset = function(timeFrame) {
+    const resetHour = 10;
+    
     let tableUpdateTime = storage.getItem(profilePrefix + timeFrame + '-updated') ?? 'false';
 
     if (tableUpdateTime === 'false') {
@@ -323,9 +325,8 @@ const checkReset = function(timeFrame) {
 
     let updateTime = new Date(parseInt(tableUpdateTime));
 
-
     let nextdate = new Date();
-    nextdate.setUTCHours(10);
+    nextdate.setUTCHours(resetHour);
     nextdate.setUTCMinutes(0);
     nextdate.setUTCSeconds(0);
 
@@ -336,7 +337,12 @@ const checkReset = function(timeFrame) {
         nextdate.setUTCDate(nextdate.getUTCDate() - weekmodifier);
     }
 
-    if (updateTime.getTime() < nextdate.getTime()) {
+    
+    // Checking for the update for the daily timeframe is a little more complex because 
+    // originally we pulled this from RS, this expects that if the new day has happened 
+    // its reset time, but we need to allow some freedom between 0 - 10am UTC (resetTime).
+    const isAfterReset = new Date().getUTCHours() >= resetHour;
+    if (updateTime.getUTCHours() < resetHour && nextdate.getTime() > updateTime.getTime() && isAfterReset) {
         resetTable(timeFrame, true);
     }
 };
