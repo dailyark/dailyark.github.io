@@ -101,6 +101,7 @@ const populateTable = function(timeFrame) {
         if (data[taskSlug].roster === true){
             newRowRoster.innerHTML = "Roster";
         }
+        
         if (data[taskSlug].roster === false){
             newRowRoster.innerHTML = "Character";
         }
@@ -352,21 +353,24 @@ const checkReset = function(timeFrame) {
  * @param {String} timeFrame
  */
 const countDown = function(timeFrame) {
+    const resetHour = 10;
     let nextdate = new Date();
 
     if (timeFrame == 'weeklies') {
         let resetday = 4;
-        nextdate.setUTCHours(10);
+        nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
         let weekmodifier = (7 + resetday - nextdate.getUTCDay() ) % 7;
         nextdate.setUTCDate(nextdate.getUTCDate() + weekmodifier);
     } else {
-        nextdate.setUTCHours(10);
+        const isAfterReset = new Date().getUTCHours() >= resetHour;
+        nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
-        nextdate.setUTCSeconds(0);
-        let weekmodifier = (2 - nextdate.getUTCDay() ) % 7;
-        nextdate.setUTCDate(nextdate.getUTCDate() + weekmodifier);
+        nextdate.setUTCSeconds(0);  
+        if(isAfterReset){
+            nextdate.setUTCDate(nextdate.getUTCDate() + 1);
+        }
     }
 
     let nowtime = new Date();
