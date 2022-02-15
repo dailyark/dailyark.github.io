@@ -3,6 +3,7 @@
 
 ## Features
 * List of dailies and weeklies for Lost Ark
+* Support for Alt Characters
 * Click the red area in right column (incomplete) to switch to green (completed)
 * Brief comments on the benefits of completing the task
 * Links to papunika or other relevant pages with further info (if available)
