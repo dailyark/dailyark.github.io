@@ -61,26 +61,25 @@
                         <a class="dropdown-item" href="https://discord.com/invite/CDNuR7fs2C" target="_blank" rel="noreferrer noopener">Papunika Discord</a>
                     </div>
                 </li>
-            </ul>
-            <ul class="navbar-nav nav-pills ms-auto nav-right">
-                <li class="nav-item dropdown">
-                    <a class="nav-link expanding_button" href="#" id="profile-button" title="Profiles"><span id="profile-name" style="display: none; visibility: hidden;"></span>㉾<span class="expanding_text">&nbsp;Profiles</span></a>
-                    <div id="profile-control" style="display:none; visibility: hidden;" data-display="none">
-                        <strong>Profiles</strong>
-                        <ul id="profile-list"></ul>
-                        <form autocomplete="off">
-                            <div class="row g-3 align-items-right">
-                                <div class="col-auto form-check" style="padding: 0 0 0 5px;">
-                                    <input type="text" class="form-control" id="profileName" name="profileName" placeholder="New Profile Name" maxlength="25" required>
-                                    <div class="invalid-feedback">Example invalid feedback text</div>
+                <li>
+                    <div>
+                        <span id="character-control">
+                            <form autocomplete="off">
+                                <div class="row">
+                                    <div class="col-auto form-check">
+                                        <input type="text" class="form-control" id="characterName" name="characterName" placeholder="New Character" maxlength="25" required>
+                                        <div class="invalid-feedback">Example invalid feedback text</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn btn-primary">+</button>
+                                    </div>
                                 </div>
-                                <div class="col-auto" style="padding: 0 5px 0 0;">
-                                    <button type="submit" class="btn btn-primary">+</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </span>
                     </div>
                 </li>
+            </ul>
+            <ul class="navbar-nav nav-pills ms-auto nav-right">
                 <li class="nav-item">
                     <a class="nav-link expanding_button" href="#" id="layout-button" title="Toggle Layout">⊟ <span class="expanding_text"> Compact Mode</span></a>
                 </li>
@@ -89,20 +88,17 @@
     </div>
 </nav>
 
-<div class="container-xl activity_tables">
+<div class="container-xl activity_tables" id="characters_body">
     <div id="dailies" class="table_container dailies_table">
         <table id="dailies_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="dailies">
             <thead>
                 <tr>
-                    <th>Dailies <span id="countdown-dailies" class="countdown"></span></th>
-                    <td nowrap class="activity_roster">
-                        Character or Roster
-                    </td>
+                    <th>Dailies Roster <span id="countdown-dailies" class="countdown"></span></th>
                     <td>
                         <span class="text-nowrap">
-                            <button id="dailies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text">Hide</span></button>
-                            <button id="dailies_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text">Unhide</span></button>
-                            <button id="dailies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text">Reset</span></button>
+                            <button id="dailies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button>
+                            <button id="dailies_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
+                            <button id="dailies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button>
                         </span>
                     </td>
                 </tr>
@@ -115,15 +111,12 @@
         <table id="weeklies_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="weeklies">
             <thead>
                 <tr>
-                    <th>Weeklies <span id="countdown-weeklies" class="countdown"></span></th>
-                    <td nowrap class="activity_roster">
-                        Character or Roster
-                    </td>
+                    <th>Weeklies Roster <span id="countdown-weeklies" class="countdown"></span></th>
                     <td>
                         <span class="text-nowrap">
-                            <button id="weeklies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text">Hide</span></button>
-                            <button id="weeklies_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text">Unhide</span></button>
-                            <button id="weeklies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text">Reset</span></button>
+                            <button id="weeklies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button>
+                            <button id="weeklies_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
+                            <button id="weeklies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button>
                         </span>
                     </td>
                 </tr>
@@ -136,10 +129,7 @@
 <template id="sample_row">
     <tr draggable="true">
         <td class="activity_name" draggable="false">
-            <a target="_blank" rel="noopener noreferrer" draggable="false">Name</a><button class="hide-button expanding_button btn btn-danger btn-sm active">⊘<span class="expanding_text">Hide</span></button>
-        </td>
-        <td>
-            <span class="activity_roster">&nbsp;</span>
+            <a target="_blank" rel="noopener noreferrer" draggable="false">Name</a><button class="hide-button expanding_button btn btn-danger btn-sm active">⊘<span class="expanding_text"> Hide</span></button>
         </td>
         <td class="activity_color">
             <span class="activity_check_off">☐</span><span class="activity_check_on">☑</span><span class="activity_desc">&nbsp;</span>

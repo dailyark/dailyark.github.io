@@ -1,48 +1,217 @@
 const storage = window.localStorage;
 
-const timeframes = ['dailies', 'weeklies'];
+const timeframesRoster = ['dailies', 'weeklies'];
+const timeframesCharacter = ['dailychar', 'weeklychar'];
 var currentProfile = 'default';
 var currentLayout = 'default';
-var profilePrefix = '';
+var characters = '';
 var dragRow; //global for currently dragged row
 
 var dailies = {
-    "chaos-dungeon": {task: "Chaos Dungeon 1", url: "https://lostarkive.com/guides/endgame/chaos-dungeons/", short: true, desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.", roster: false},
-    "chaos-dungeon-2": {task: "Chaos Dungeon 2", url: "https://lostarkive.com/guides/endgame/chaos-dungeons/", short: true, desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.", roster: false},
-    "guardian-raid": {task: "Guardian Raid 1", url: "https://papunika.com/guardian-subjugations/", short: true, desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.", roster: false},
-    "guardian-raid-2": {task: "Guardian Raid 2", url: "https://papunika.com/guardian-subjugations/", short: true, desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.", roster: false},
-    "una-daily" : {task: "Una Daily 1", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
-    "una-daily-2" : {task: "Una Daily 2", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
-    "una-daily-3" : {task: "Una Daily 3", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per day.</br>Can be expanded up to +3.", roster: false},
-    "trade-skill" : {task: "Trade Skill", url: "https://papunika.com/life-skill/", short: true, desc: "Until energy is depleted.", roster: false},
-    "guild-support" : {task: "Guild Support", url: "#", short: true, desc: "1 Donation per day.</br>1 Research Support per day.", roster: false},
-    "rapport-actions-songs" : {task: "Rapport Songs", url: "https://papunika.com/affinity/", short: true, desc: "5 Songs per day (+1 with Blessing)..", roster: true},
-    "rapport-actions-emotes" : {task: "Rapport Emotes", url: "https://papunika.com/affinity/", short: true, desc: "5 Emotes per day (+1 with Blessing).", roster: true},
-    "adventure-island" : {task: "Adventure Island", url: "https://lostarkive.com/guides/beginner/sea-activities/", short: true, desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00.", roster: true},
-    "voyage-coop-mission" : {task: "Vooyage Co-Op Mission", url: "https://papunika.com/voyage-guide/", short: true, desc: "Appears multiple times per day.", roster: true},
-    "world-boss" : {task: "World Boss", url: "#", short: true, desc: "Once per day (only on specific days).", roster: true},
-    "chaos-gate" : {task: "Chaos Gate", url: "#", short: true, desc: "At specific times.", roster: true},
+    "rapport-actions-songs": {
+        task: "Rapport Songs",
+        url: "https://papunika.com/affinity/",
+        short: true,
+        desc: "5 Songs per day (+1 with Blessing)."
+    },
+    "rapport-actions-emotes": {
+        task: "Rapport Emotes",
+        url: "https://papunika.com/affinity/",
+        short: true,
+        desc: "5 Emotes per day (+1 with Blessing)."
+    },
+    "adventure-island": {
+        task: "Adventure Island",
+        url: "https://lostarkive.com/guides/beginner/sea-activities/",
+        short: true,
+        desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00."
+    },
+    "voyage-coop-mission": {
+        task: "Vooyage Co-Op Mission",
+        url: "https://papunika.com/voyage-guide/",
+        short: true,
+        desc: "Appears multiple times per day."
+    },
+    "world-boss": {
+        task: "World Boss",
+        url: "#",
+        short: true,
+        desc: "Once per day (only on specific days)."
+    },
+    "chaos-gate": {
+        task: "Chaos Gate",
+        url: "#",
+        short: true,
+        desc: "At specific times."
+    },
 };
 
+var dailychar = {
+    "chaos-dungeon": {
+        task: "Chaos Dungeon 1",
+        url: "https://lostarkive.com/guides/endgame/chaos-dungeons/",
+        short: true,
+        desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day."
+    },
+    "chaos-dungeon-2": {
+        task: "Chaos Dungeon 2",
+        url: "https://lostarkive.com/guides/endgame/chaos-dungeons/",
+        short: true,
+        desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day."
+    },
+    "guardian-raid": {
+        task: "Guardian Raid 1",
+        url: "https://papunika.com/guardian-subjugations/",
+        short: true,
+        desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day."
+    },
+    "guardian-raid-2": {
+        task: "Guardian Raid 2",
+        url: "https://papunika.com/guardian-subjugations/",
+        short: true,
+        desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day."
+    },
+    "una-daily": {
+        task: "Una Daily 1",
+        url: "https://papunika.com/unas-tasks-overview/",
+        short: true,
+        desc: "3 Una tasks per day.</br>Can be expanded up to +3."
+    },
+    "una-daily-2": {
+        task: "Una Daily 2",
+        url: "https://papunika.com/unas-tasks-overview/",
+        short: true,
+        desc: "3 Una tasks per day.</br>Can be expanded up to +3."
+    },
+    "una-daily-3": {
+        task: "Una Daily 3",
+        url: "https://papunika.com/unas-tasks-overview/",
+        short: true,
+        desc: "3 Una tasks per day.</br>Can be expanded up to +3."
+    },
+    "trade-skill": {
+        task: "Trade Skill",
+        url: "https://papunika.com/life-skill/",
+        short: true,
+        desc: "Until energy is depleted."
+    },
+    "guild-support": {
+        task: "Guild Support",
+        url: "#",
+        short: true,
+        desc: "1 Donation per day.</br>1 Research Support per day."
+    },
+}
+
+var weeklychar = {
+    "guardian-challenge-mode": {
+        task: "Guardian Challenge Mode 1",
+        url: "https://papunika.com/guardian-subjugations/",
+        desc: "1 per week per Boss (3 in total)."
+    },
+    "guardian-challenge-mode-2": {
+        task: "Guardian Challenge Mode 2",
+        url: "https://papunika.com/guardian-subjugations/",
+        desc: "1 per week per Boss (3 in total)."
+    },
+    "guardian-challenge-mode-3": {
+        task: "Guardian Challenge Mode 3",
+        url: "https://papunika.com/guardian-subjugations/",
+        desc: "1 per week per Boss (3 in total)."
+    },
+    "abyss-dungeon": {
+        task: "Abyss Dungeon 1",
+        url: "https://papunika.com/abyss-dungeons/",
+        short: true,
+        desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
+    },
+    "abyss-dungeon-2": {
+        task: "Abyss Dungeon 2",
+        url: "https://papunika.com/abyss-dungeons/",
+        short: true,
+        desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
+    },
+    "abyss-dungeon-3": {
+        task: "Abyss Dungeon 3",
+        url: "https://papunika.com/abyss-dungeons/",
+        short: true,
+        desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
+    },
+    "una-weekly": {
+        task: "Una Weekly 1",
+        url: "https://papunika.com/unas-tasks-overview/",
+        short: true,
+        desc: "3 Una tasks per week.</br>Can be expanded up to +1."
+    },
+    "una-weekly-2": {
+        task: "Una Weekly 2",
+        url: "https://papunika.com/unas-tasks-overview/",
+        short: true,
+        desc: "3 Una tasks per week.</br>Can be expanded up to +1."
+    },
+    "una-weekly-3": {
+        task: "Una Weekly 3",
+        url: "https://papunika.com/unas-tasks-overview/",
+        short: true,
+        desc: "3 Una tasks per week.</br>Can be expanded up to +1."
+    },
+    "abyss-raid": {
+        task: "Abyss Raid",
+        url: "https://papunika.com/abyss-raids/",
+        short: true,
+        desc: "1 per week per Abyss Raid."
+    },
+    "legion-raid": {
+        task: "Legion Raid",
+        url: "https://papunika.com/legion-raids/",
+        short: true,
+        desc: "1 per week (shared between difficutlies)."
+    },
+}
+
 var weeklies = {
-    "guardian-challenge-mode": {task: "Guardian Challenge Mode 1", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
-    "guardian-challenge-mode-2": {task: "Guardian Challenge Mode 2", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
-    "guardian-challenge-mode-3": {task: "Guardian Challenge Mode 3", url: "https://papunika.com/guardian-subjugations/", desc: "1 per week per Boss (3 in total).", roster: false},
-    "abyss-dungeon" : {task: "Abyss Dungeon 1", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
-    "abyss-dungeon-2" : {task: "Abyss Dungeon 2", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
-    "abyss-dungeon-3" : {task: "Abyss Dungeon 3", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week.", roster: false},
-    "una-weekly" : {task: "Una Weekly 1", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
-    "una-weekly-2" : {task: "Una Weekly 2", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
-    "una-weekly-3" : {task: "Una Weekly 3", url: "https://papunika.com/unas-tasks-overview/", short: true, desc: "3 Una tasks per week.</br>Can be expanded up to +1.", roster: false},
-    "abyss-raid" : {task: "Abyss Raid", url: "https://papunika.com/abyss-raids/", short: true, desc: "1 per week per Abyss Raid.", roster: false},
-    "legion-raid" : {task: "Legion Raid", url: "https://papunika.com/legion-raids/", short: true, desc: "1 per week (shared between difficutlies).", roster: false},
-    "challenge-abyss-dungeon" : {task: "Challenge Abyss Dungeon", url: "https://papunika.com/abyss-dungeons/", short: true, desc: "1 per week per Challenge Abyss Dungeon.", roster: true},
-    "gvg-guild-boss" : {task: "GVG / Guild Boss", url: "#", short: true, desc: "Once per week.", roster: true},
-    "merchant-ship-exchange" : {task: "Merchant Ship Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset.", roster: true},
-    "silmael-bloodstone-exchange" : {task: "Silmael Bloodstone Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset.", roster: true},
-    "pvp-token-exchange" : {task: "PVP Token Exchange", url: "#", short: true, desc: "Supply replenishes on weekly reset.", roster: true},
-    "ghost-ship" : {task: "Ghost Ship", url: "https://lostarkive.com/guides/beginner/sea-activities/", short: true, desc: "At specific times.", roster: true},
-    "pvp-island" : {task: "PVP Island", url: "#", short: true, desc: "Determined by the occupying guild.", roster: true},
+    "challenge-abyss-dungeon": {
+        task: "Challenge Abyss Dungeon",
+        url: "https://papunika.com/abyss-dungeons/",
+        short: true,
+        desc: "1 per week per Challenge Abyss Dungeon."
+    },
+    "gvg-guild-boss": {
+        task: "GVG / Guild Boss",
+        url: "#",
+        short: true,
+        desc: "Once per week."
+    },
+    "merchant-ship-exchange": {
+        task: "Merchant Ship Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
+    },
+    "silmael-bloodstone-exchange": {
+        task: "Silmael Bloodstone Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
+    },
+    "pvp-token-exchange": {
+        task: "PVP Token Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
+    },
+    "ghost-ship": {
+        task: "Ghost Ship",
+        url: "https://lostarkive.com/guides/beginner/sea-activities/",
+        short: true,
+        desc: "At specific times."
+    },
+    "pvp-island": {
+        task: "PVP Island",
+        url: "#",
+        short: true,
+        desc: "Determined by the occupying guild."
+    },
 };
 
 /**
@@ -50,32 +219,54 @@ var weeklies = {
  * @param {String} timeFrame
  * @returns
  */
-const populateTable = function(timeFrame) {
+const populateTable = function (timeFrame, char) {
+    profilePrefix = char;
     let data = window[timeFrame];
+    let table;
+    let hideTable;
+    let customOrder;
 
     const sampleRow = document.querySelector('#sample_row');
-    const table = document.getElementById(timeFrame + '_table');
+    if (profilePrefix != null) {
+        table = document.getElementById(profilePrefix + '_' + timeFrame + '_table');
+    } else {
+        table = document.getElementById(timeFrame + '_table');
+
+    }
     const tbody = table.querySelector('tbody');
 
     //Hidden table
-    let hideTable = storage.getItem(profilePrefix + timeFrame + '-hide') ?? 'false';
+    if (profilePrefix != null) {
+        hideTable = storage.getItem(profilePrefix + '-' + timeFrame + '-hide') ?? 'false';
+    } else {
+        hideTable = storage.getItem(timeFrame + '-hide') ?? 'false';
+    }
+
     if (hideTable == 'hide') {
-        document.querySelector('div.' + timeFrame + '_table').dataset.hide = 'hide';
+        if (profilePrefix != null) {
+            document.querySelector('div.' + profilePrefix + '_' + timeFrame + '_table').dataset.hide = 'hide';
+        } else {
+            document.querySelector('div.' + timeFrame + '_table').dataset.hide = 'hide';
+        }
+
     }
 
     //User defined sorting
-    let customOrder = storage.getItem(profilePrefix + timeFrame + '-order') ?? 'false';
+    if (profilePrefix != null) {
+        customOrder = storage.getItem(profilePrefix + '-' + timeFrame + '-order') ?? 'false';
+    } else {
+        customOrder = storage.getItem(timeFrame + '-order') ?? 'false';
+    }
     if (customOrder !== 'false' && !['asc', 'desc', 'alpha', 'default'].includes(customOrder)) {
         let sortArray = customOrder.split(',');
 
-        data = Object.keys(data).sort(function(a, b) {
+        data = Object.keys(data).sort(function (a, b) {
             return sortArray.indexOf(a) - sortArray.indexOf(b);
         }).reduce(
             (obj, key) => {
                 obj[key] = data[key];
                 return obj;
-            },
-            {}
+            }, {}
         );
     }
 
@@ -84,27 +275,23 @@ const populateTable = function(timeFrame) {
         let newRow = rowClone.querySelector('tr');
         let newRowAnchor = rowClone.querySelector('td.activity_name a');
         let newRowColor = rowClone.querySelector('td.activity_color .activity_desc');
-        let newRowRoster = rowClone.querySelector('span.activity_roster');
+        let taskState;
 
-        let taskState = storage.getItem(profilePrefix + taskSlug) ?? 'false';
+        if (profilePrefix != null) {
+            taskState = storage.getItem(profilePrefix + '-' + taskSlug) ?? 'false';
+        } else {
+            taskState = storage.getItem(taskSlug) ?? 'false';
+        }
 
-        newRow.dataset.task=taskSlug;
+        newRow.dataset.task = taskSlug;
 
         if (!!data[taskSlug].url) {
-            if(data[taskSlug].url !== "#"){
+            if (data[taskSlug].url !== "#") {
                 newRowAnchor.href = data[taskSlug].url;
-            } 
+            }
         }
 
         newRowAnchor.innerHTML = data[taskSlug].task;
-
-        if (data[taskSlug].roster === true){
-            newRowRoster.innerHTML = "Roster";
-        }
-        
-        if (data[taskSlug].roster === false){
-            newRowRoster.innerHTML = "Character";
-        }
 
         if (!!data[taskSlug].desc) {
             newRowColor.innerHTML = data[taskSlug].desc;
@@ -136,41 +323,58 @@ const populateTable = function(timeFrame) {
 /**
  * Attach event listeners to table cells
  */
-const tableEventListeners = function() {
+const tableEventListeners = function () {
     let rowsColor = document.querySelectorAll('td.activity_color');
     let rowsHide = document.querySelectorAll('td.activity_name button.hide-button');
 
     for (let colorCell of rowsColor) {
         colorCell.addEventListener('click', function () {
             let thisTimeframe = this.closest('table').dataset.timeframe;
+            let thisCharacter = this.closest('table').dataset.character;
             let thisRow = this.closest('tr');
             let taskSlug = thisRow.dataset.task;
             let newState = (thisRow.dataset.completed === 'true') ? 'false' : 'true'
             thisRow.dataset.completed = newState;
-
             if (newState === 'true') {
-                storage.setItem(profilePrefix + taskSlug, newState);
-            } else {
-                storage.removeItem(profilePrefix + taskSlug);
-            }
+                if (thisCharacter != null) {
+                    storage.setItem(thisCharacter + '-' + taskSlug, newState);
+                } else {
+                    storage.setItem(taskSlug, newState);
+                }
 
-            storage.setItem(profilePrefix + thisTimeframe + '-updated', new Date().getTime());
+            } else {
+                if (thisCharacter != null) {
+                    storage.removeItem(thisCharacter + '-' + taskSlug);
+                } else {
+                    storage.removeItem(taskSlug);
+                }
+            }
+            if (thisCharacter != null) {
+                storage.setItem(thisCharacter + '-' + thisTimeframe + '-updated', new Date().getTime());
+            } else {
+                storage.setItem(thisTimeframe + '-updated', new Date().getTime());
+            }
         });
 
         let descriptionAnchors = colorCell.querySelectorAll('a');
         for (let anchor of descriptionAnchors) {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
         }
     }
 
     for (let rowHide of rowsHide) {
-        rowHide.addEventListener('click', function() {
+        rowHide.addEventListener('click', function () {
             let thisRow = this.closest('tr');
             let taskSlug = thisRow.dataset.task;
+            let thisCharacter = this.closest('table').dataset.character;
             thisRow.dataset.completed = 'hide';
-            storage.setItem(profilePrefix + taskSlug, 'hide');
+            if (thisCharacter != null) {
+                storage.setItem(thisCharacter + '-' + taskSlug, 'hide');
+            } else {
+                storage.setItem(taskSlug, 'hide');
+            }
         });
     }
 };
@@ -179,24 +383,36 @@ const tableEventListeners = function() {
  * Attach drag and drop functionality after elements added to DOM
  * @param {String} timeFrame
  */
-const draggableTable = function(timeFrame) {
-
-    const targetRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+const draggableTable = function (timeFrame, char) {
+    profilePrefix = char;
+    let targetRows;
+    if (profilePrefix != null) {
+        targetRows = document.querySelectorAll('#' + profilePrefix + '_' + timeFrame + '_table tbody tr');
+    } else {
+        targetRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+    }
 
     for (let row of targetRows) {
-        row.addEventListener('dragstart', function(e) {
+        row.addEventListener('dragstart', function (e) {
             dragRow = e.target;
         });
 
-        row.addEventListener('dragenter', function(e) {
+        row.addEventListener('dragenter', function (e) {
             this.classList.add('dragover');
         });
 
-        row.addEventListener('dragover', function(e) {
+        row.addEventListener('dragover', function (e) {
             e.preventDefault();
-
+            let rowArray
+            let thisCharacter = this.closest('table').dataset.character;
             //requery this in case rows reordered since load
-            let rowArray = Array.from(document.querySelectorAll('#' + timeFrame + '_table tbody tr'));
+            if (thisCharacter != null) {
+                rowArray = Array.from(document.querySelectorAll('#' + thisCharacter + '_' + timeFrame + '_table tbody tr'));
+            } else {
+                rowArray = Array.from(document.querySelectorAll('#' + timeFrame + '_table tbody tr'));
+            }
+
+
             let dragOverRow = e.target.closest('tr');
 
             if (rowArray.indexOf(dragRow) < rowArray.indexOf(dragOverRow)) {
@@ -206,31 +422,45 @@ const draggableTable = function(timeFrame) {
             }
         });
 
-        row.addEventListener('dragleave', function(e) {
+        row.addEventListener('dragleave', function (e) {
             this.classList.remove('dragover');
         });
 
-        row.addEventListener('dragend', function(e) {
+        row.addEventListener('dragend', function (e) {
             this.classList.remove('dragover');
-
-            let clearRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+            let clearRows;
+            let thisCharacter = this.closest('table').dataset.character;
+            if (thisCharacter != null) {
+                clearRows = document.querySelectorAll('#' + thisCharacter + '_' + timeFrame + '_table tbody tr');
+            } else {
+                clearRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+            }
             for (let clearRow of clearRows) {
                 clearRow.classList.remove('dragover');
             }
         });
 
-        row.addEventListener('drop', function(e) {
+        row.addEventListener('drop', function (e) {
             e.stopPropagation();
+            let thisCharacter = this.closest('table').dataset.character;
 
             //save the order
             let csv = [];
-            let rows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
-
+            let rows;
+            if (thisCharacter != null) {
+                rows = document.querySelectorAll('#' + thisCharacter + '_' + timeFrame + '_table tbody tr');
+            } else {
+                rows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+            }
             for (let row of rows) {
                 csv.push(row.dataset.task);
             }
 
-            storage.setItem(profilePrefix + timeFrame + '-order', csv.join(','));
+            if (thisCharacter != null) {
+                storage.setItem(thisCharacter + '-' + timeFrame + '-order', csv.join(','));
+            } else {
+                storage.setItem(timeFrame + '-order', csv.join(','));
+            }
 
             return false;
         });
@@ -242,42 +472,84 @@ const draggableTable = function(timeFrame) {
  * @param {String} timeFrame
  * @param {Boolean} html change the data on the element or not
  */
-const resetTable = function(timeFrame, html) {
-    const tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+const resetTable = function (timeFrame, html, char) {
+    profilePrefix = char;
+    let tableRows;
+    console.log(profilePrefix);
+    if (profilePrefix != null) {
+        tableRows = document.querySelectorAll('#' + profilePrefix + '_' + timeFrame + '_table tbody tr');
+    } else {
+        tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+    }
 
     for (let rowTarget of tableRows) {
-        let itemState = storage.getItem(profilePrefix + rowTarget.dataset.task) ?? 'false';
+        let itemState;
+        if (profilePrefix != null) {
+            itemState = storage.getItem(profilePrefix + '-' + rowTarget.dataset.task) ?? 'false';
+        } else {
+            itemState = storage.getItem(rowTarget.dataset.task) ?? 'false';
+        }
+
         if (itemState != 'hide') {
             if (html) {
                 rowTarget.dataset.completed = false;
             }
-
-            storage.removeItem(profilePrefix + rowTarget.dataset.task);
+            if (profilePrefix != null) {
+                storage.removeItem(profilePrefix + '-' + rowTarget.dataset.task);
+            } else {
+                storage.removeItem(rowTarget.dataset.task);
+            }
         }
     }
 
-    storage.removeItem(profilePrefix + timeFrame + '-updated');
+    if (profilePrefix != null) {
+        storage.removeItem(profilePrefix + '-' + timeFrame + '-updated');
+    } else {
+        storage.removeItem(timeFrame + '-updated');
+    }
+
 };
 
 /**
  * Attach event listener to button for resetting table
  * @param {String} timeFrame
  */
-const resettableSection = function(timeFrame) {
+const resettableSection = function (timeFrame, char) {
+    profilePrefix = char;
     let data = window[timeFrame];
-    let resetButton = document.querySelector('#' + timeFrame + '_reset_button');
+    let resetButton;
+
+    if (profilePrefix != null) {
+        resetButton = document.querySelector('#' + profilePrefix + '_' + timeFrame + '_reset_button');
+    } else {
+        resetButton = document.querySelector('#' + timeFrame + '_reset_button');
+    }
+
     resetButton.addEventListener('click', function () {
-        resetTable(timeFrame, false);
+        let thisCharacter = this.closest('table').dataset.character;
+        resetTable(timeFrame, false, thisCharacter);
 
         for (let taskSlug in data) {
-            let itemState = storage.getItem(profilePrefix + taskSlug) ?? 'false';
+            let itemState;
+            if (profilePrefix != null) {
+                itemState = storage.getItem(profilePrefix + '-' + taskSlug) ?? 'false';
+            } else {
+                itemState = storage.getItem(taskSlug) ?? 'false';
+            }
 
             if (itemState == 'hide') {
-                storage.removeItem(profilePrefix + taskSlug);
+                if (profilePrefix != null) {
+                    storage.removeItem(profilePrefix + '-' + taskSlug);
+                } else {
+                    storage.removeItem(taskSlug);
+                }
             }
         }
-
-        storage.removeItem(profilePrefix + timeFrame + '-order');
+        if (profilePrefix != null) {
+            storage.removeItem(profilePrefix + '-' + timeFrame + '-order');
+        } else {
+            storage.removeItem(timeFrame + '-order');
+        }
         window.location.reload();
     });
 };
@@ -286,26 +558,45 @@ const resettableSection = function(timeFrame) {
  * Attach event listener for hiding/unhiding table
  * @param {String} timeFrame
  */
-const hidableSection = function(timeFrame) {
-    let hideButton = document.querySelector('#' + timeFrame + '_hide_button');
+const hidableSection = function (timeFrame, char) {
+    profilePrefix = char;
+    let hideButton;
+    let unhideButton;
+    let hideTable;
+
+    if (profilePrefix != null) {
+        hideButton = document.querySelector('#' + profilePrefix + '_' + timeFrame + '_hide_button');
+        unhideButton = document.querySelector('#' + profilePrefix + '_' + timeFrame + '_unhide_button');
+    } else {
+        hideButton = document.querySelector('#' + timeFrame + '_hide_button');
+        unhideButton = document.querySelector('#' + timeFrame + '_unhide_button');
+    }
+
     hideButton.addEventListener('click', function () {
-        let hideTable = document.querySelector('div.' + timeFrame + '_table');
-        hideTable.dataset.hide = 'hide';
-        storage.setItem(profilePrefix + timeFrame + '-hide', 'hide');
+        let thisCharacter = this.closest('table').dataset.character;
+        if (thisCharacter != null) {
+            hideTable = document.querySelector('div.' + thisCharacter + '_' + timeFrame + '_table');
+            hideTable.dataset.hide = 'hide';
+            storage.setItem(thisCharacter + '-' + timeFrame + '-hide', 'hide');
+        } else {
+            hideTable = document.querySelector('div.' + timeFrame + '_table');
+            hideTable.dataset.hide = 'hide';
+            storage.setItem(timeFrame + '-hide', 'hide');
+        }
     });
 
-    let navLink = document.querySelector('#' + timeFrame + '_nav');
-    navLink.addEventListener('click', function() {
-        let hideTable = document.querySelector('div.' + timeFrame + '_table');
-        hideTable.dataset.hide = '';
-        storage.removeItem(profilePrefix + timeFrame + '-hide');
-    });
+    unhideButton.addEventListener('click', function () {
+        let thisCharacter = this.closest('table').dataset.character;
+        if (thisCharacter != null) {
+            hideTable = document.querySelector('div.' + thisCharacter + '_' + timeFrame + '_table');
+            hideTable.dataset.hide = '';
+            storage.removeItem(thisCharacter + '-' + timeFrame + '-hide');
+        } else {
+            hideTable = document.querySelector('div.' + timeFrame + '_table');
+            hideTable.dataset.hide = '';
+            storage.removeItem(timeFrame + '-hide');
+        }
 
-    let unhideButton = document.querySelector('#' + timeFrame + '_unhide_button');
-    unhideButton.addEventListener('click', function() {
-        let hideTable = document.querySelector('div.' + timeFrame + '_table');
-        hideTable.dataset.hide = '';
-        storage.removeItem(profilePrefix + timeFrame + '-hide');
     });
 };
 
@@ -315,10 +606,16 @@ const hidableSection = function(timeFrame) {
  * @param {String} timeFrame
  * @returns
  */
-const checkReset = function(timeFrame) {
+const checkReset = function (timeFrame, char) {
+    profilePrefix = char;
     const resetHour = 10;
-    
-    let tableUpdateTime = storage.getItem(profilePrefix + timeFrame + '-updated') ?? 'false';
+    let tableUpdateTime;
+
+    if (profilePrefix != null) {
+        tableUpdateTime = storage.getItem(profilePrefix + '-' + timeFrame + '-updated') ?? 'false';
+    } else {
+        tableUpdateTime = storage.getItem(timeFrame + '-updated') ?? 'false';
+    }
 
     if (tableUpdateTime === 'false') {
         return false;
@@ -338,13 +635,13 @@ const checkReset = function(timeFrame) {
         nextdate.setUTCDate(nextdate.getUTCDate() - weekmodifier);
     }
 
-    
+
     // Checking for the update for the daily timeframe is a little more complex because 
     // originally we pulled this from RS, this expects that if the new day has happened 
     // its reset time, but we need to allow some freedom between 0 - 10am UTC (resetTime).
     const isAfterReset = new Date().getUTCHours() >= resetHour;
     if (updateTime.getUTCHours() < resetHour && nextdate.getTime() > updateTime.getTime() && isAfterReset) {
-        resetTable(timeFrame, true);
+        resetTable(timeFrame, true, profilePrefix);
     }
 };
 
@@ -352,7 +649,7 @@ const checkReset = function(timeFrame) {
  * Add a countdown timer until the next reset for a timeframe
  * @param {String} timeFrame
  */
-const countDown = function(timeFrame) {
+const countDown = function (timeFrame) {
     const resetHour = 10;
     let nextdate = new Date();
 
@@ -361,14 +658,14 @@ const countDown = function(timeFrame) {
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
-        let weekmodifier = (7 + resetday - nextdate.getUTCDay() ) % 7;
+        let weekmodifier = (7 + resetday - nextdate.getUTCDay()) % 7;
         nextdate.setUTCDate(nextdate.getUTCDate() + weekmodifier);
     } else {
         const isAfterReset = new Date().getUTCHours() >= resetHour;
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
-        nextdate.setUTCSeconds(0);  
-        if(isAfterReset){
+        nextdate.setUTCSeconds(0);
+        if (isAfterReset) {
             nextdate.setUTCDate(nextdate.getUTCDate() + 1);
         }
     }
@@ -386,66 +683,75 @@ const countDown = function(timeFrame) {
     document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
 };
 
-/**
- * Good enough for now profile system
- * @todo make it better
- */
-const profiles = function() {
-    let profilesStored= storage.getItem('profiles') ?? 'default';
-    let profilesArray = profilesStored.split(',');
+const charactersFunction = function () {
+    let charactersStored = storage.getItem('characters');
+    let characterControl = document.getElementById('character-control');
+    let characterForm = characterControl.querySelector('form');
+    let charactersArray = [];
 
-    currentProfile = storage.getItem('current-profile') ?? 'default';
-    profilePrefix = currentProfile == 'default' ? '' : currentProfile + '-';
+    if (charactersStored !== null) {
+        charactersArray = charactersStored.split(',');
 
-    if (profilesArray.length > 1) {
-        let profileName = document.getElementById('profile-name');
-        profileName.innerHTML = currentProfile;
-        profileName.style.display = 'inline-block';
-        profileName.style.visibility = 'visible';
-    }
+        let characterBody = document.getElementById('characters_body')
 
-    let profilebutton = document.getElementById('profile-button');
-    let profileControl = document.getElementById('profile-control');
-    let profileForm = profileControl.querySelector('form');
-    let profileName = document.getElementById('profileName');
-    let profileList = document.getElementById('profile-list');
-
-    //populate list of existing profiles
-    for (let profile of profilesArray) {
-        let deleteButton = profile !== 'default' ? '<span class="profile-delete btn btn-danger btn-sm active" data-profile="' + profile + '" title="Delete ' + profile + '">⊘</span>' : '';
-        if (profile !== currentProfile) {
-            profileList.innerHTML += '<li><a href="#" data-profile="' + profile + '">' + profile + '</a>' + deleteButton + '</li>';
-        } else {
-            profileList.innerHTML += '<li>' + profile + deleteButton + '</li>'
+        //populate list of characters
+        for (let character of charactersArray) {
+            characterBody.innerHTML +=
+                '<div class="table_container_characters">'+
+                '<div id="' + character + '_dailychar" class="table_container ' + character + '_dailychar_table">' +
+                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="dailychar" data-character="'+character+'">' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + character + ' Daily</th>' +
+                '<td>' +
+                '<span class="text-nowrap">' +
+                '<button id="' + character + '_dailychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
+                '<button id="' + character + '_dailychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
+                '<button id="' + character + '_dailychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
+                '<button id="character-delete" class="btn btn-danger btn-sm active expanding_button" data-character="' + character + '" title="Delete ' + character + '">⊘<span class="expanding_text"> Delete ' + character + '?</span></button>' +
+                '</td>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody></tbody>' +
+                '</table>' +
+                '</div>'+
+                '<div id="' + character + '_weeklychar" class="table_container ' + character + '_weeklychar_table">' +
+                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="weeklychar" data-character="'+character+'">' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + character + ' Weekly</th>' +
+                '<td>' +
+                '<span class="text-nowrap">' +
+                '<button id="' + character + '_weeklychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
+                '<button id="' + character + '_weeklychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
+                '<button id="' + character + '_weeklychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
+                '<button id="character-delete" class="btn btn-danger btn-sm active expanding_button" data-character="' + character + '" title="Delete ' + character + '">⊘<span class="expanding_text"> Delete ' + character + '?</span></button>' +
+                '</td>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody></tbody>' +
+                '</table>' +
+                '</div>'+
+                '</div>'
         }
     }
 
-    //Event listener for profile links
-    let profileLinks = profileList.querySelectorAll('li a');
-    for (let profileLink of profileLinks) {
-        profileLink.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            let switchProfile = this.dataset.profile;
-            storage.setItem('current-profile', switchProfile);
-            window.location.reload();
-        });
-    }
-
-    //Event listener for delete profile button
-    let deleteButtons = profileList.querySelectorAll('.profile-delete');
+    //Event listener for deleting character button
+    let characterBody = document.getElementById('characters_body');
+    let deleteButtons = characterBody.querySelectorAll('#character-delete');
     for (let deleteButton of deleteButtons) {
-        deleteButton.addEventListener('click', function(e) {
+        deleteButton.addEventListener('click', function (e) {
+            console.log("Click on delete");
             e.preventDefault();
-            profilesArray = profilesArray.filter(e => e != this.dataset.profile);
-            storage.setItem('profiles', profilesArray.join(','));
-
-            if (this.dataset.profile == currentProfile) {
-                storage.setItem('current-profile', 'default');
+            charactersArray = charactersArray.filter(e => e != this.dataset.character);
+            if(charactersArray.length == 0){
+                storage.removeItem('characters');
+            }else{
+                storage.setItem('characters', charactersArray.join(','));
             }
-
-            let prefix = this.dataset.profile == 'default' ? '' : (this.dataset.profile + '-');
-            for (const timeFrame of timeframes) {
+            
+            let prefix = this.dataset.character == 'default' ? '' : (this.dataset.character + '-');
+            for (const timeFrame of timeframesCharacter) {
                 let data = window[timeFrame];
                 for (let task in data) {
                     storage.removeItem(prefix + task);
@@ -459,69 +765,40 @@ const profiles = function() {
     }
 
     //alpha-numeric profile names only
-    profileName.addEventListener('keypress', function(e) {
+    characterName.addEventListener('keypress', function (e) {
         if (!/^[A-Za-z0-9]+$/.test(e.key)) {
             e.preventDefault();
             return false;
         }
     });
 
-    //Event listener for the main button hiding/showing control
-    profilebutton.addEventListener('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-
-        let display=profileControl.dataset.display;
-        if (display == 'none') {
-            profileControl.style.display = 'block';
-            profileControl.style.visibility = 'visible';
-            profileControl.dataset.display = 'block';
-        } else {
-            profileControl.style.display = 'none';
-            profileControl.style.visibility = 'hidden';
-            profileControl.dataset.display = 'none';
-        }
-    });
-
     // Save data on submit
-    profileForm.addEventListener('submit', function(e) {
+    characterForm.addEventListener('submit', function (e) {
         e.preventDefault();
+        console.log("Adding char!")
 
-        let profileNameField = this.querySelector('input#profileName');
-        let profileErrorMsg = profileNameField.parentNode.querySelector('.invalid-feedback');
+        let characterNameField = this.querySelector('input#characterName');
+        let characterErrorMsg = characterNameField.parentNode.querySelector('.invalid-feedback');
 
-        if (!/^[A-Za-z0-9]+$/.test(profileNameField.value)) {
-            profileName.classList.add('is-invalid');
-            profileErrorMsg.innerHTML = 'Alpha numeric and no spaces only';
-        } else if (profilesArray.includes(profileNameField.value)) {
-            profileName.classList.add('is-invalid');
-            profileErrorMsg.innerHTML = 'Profile already exists';
+        if (!/^[A-Za-z0-9]+$/.test(characterNameField.value)) {
+            characterName.classList.add('is-invalid');
+            characterErrorMsg.innerHTML = 'Alpha numeric and no spaces only';
+        } else if (charactersArray.includes(characterNameField.value)) {
+            characterName.classList.add('is-invalid');
+            characterErrorMsg.innerHTML = 'Character already exists';
         } else {
-            profilesArray.push(profileNameField.value);
-            storage.setItem('profiles', profilesArray.join(','));
-            storage.setItem('current-profile', profileNameField.value);
+            charactersArray.push(characterNameField.value);
+            storage.setItem('characters', charactersArray.join(','));
             window.location.reload();
         }
     });
 
-    profileControl.addEventListener('click', function(e) {
+    characterControl.addEventListener('click', function (e) {
         e.stopPropagation();
     });
+}
 
-    document.addEventListener('click', function(e) {
-        profileControl.style.display = 'none';
-        profileControl.style.visibility = 'hidden';
-        profileControl.dataset.display = 'none';
-    });
-
-    document.addEventListener('scroll', function(e) {
-        profileControl.style.display = 'none';
-        profileControl.style.visibility = 'hidden';
-        profileControl.dataset.display = 'none';
-    });
-};
-
-const layouts = function() {
+const layouts = function () {
     const layoutButton = document.getElementById('layout-button');
     const layoutGlyph = layoutButton.querySelector('.glyph');
     let currentLayout = storage.getItem('current-layout') ?? 'default';
@@ -530,7 +807,7 @@ const layouts = function() {
         layoutButton.innerHTML = '⊞<span class="expanding_text">&nbsp;Full Mode</span>';
     }
 
-    layoutButton.addEventListener('click', function(e) {
+    layoutButton.addEventListener('click', function (e) {
         e.preventDefault();
 
         let setLayout = document.body.classList.contains('compact') ? 'compact' : 'default';
@@ -551,13 +828,15 @@ const layouts = function() {
  * Make bootstrap 5 dropdown menus collapse after link is clicked
  * old method of adding `data-toggle="collapse" data-target=".navbar-collapse.show"` to the <li>s was preventing navigation by the same element
  */
-const dropdownMenuHelper = function() {
+const dropdownMenuHelper = function () {
     const navLinks = document.querySelectorAll('.nav-item:not(.dropdown), .dropdown-item');
     const menuToggle = document.getElementById('navbarSupportedContent');
-    const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle: false});
+    const bsCollapse = new bootstrap.Collapse(menuToggle, {
+        toggle: false
+    });
 
-    navLinks.forEach( function(l) {
-        l.addEventListener('click', function() {
+    navLinks.forEach(function (l) {
+        l.addEventListener('click', function () {
             if (menuToggle.classList.contains('show')) {
                 bsCollapse.toggle();
             }
@@ -565,24 +844,41 @@ const dropdownMenuHelper = function() {
     });
 };
 
-window.onload = function() {
-    profiles();
+window.onload = function () {
+    charactersFunction();
     layouts();
 
-    for (const timeFrame of timeframes) {
-        populateTable(timeFrame);
-        draggableTable(timeFrame);
-        checkReset(timeFrame);
-        resettableSection(timeFrame);
-        hidableSection(timeFrame);
+    let charactersStored = storage.getItem('characters');
+    if (charactersStored !== null) {
+        let characterArray = charactersStored.split(',');
+
+        for (const index in characterArray) {
+            character = characterArray[index];
+            console.log("Adding stuff for: ", character);
+            for (const timeFrame of timeframesCharacter) {
+                populateTable(timeFrame, character);
+                draggableTable(timeFrame, character);
+                checkReset(timeFrame, character);
+                resettableSection(timeFrame, character);
+                hidableSection(timeFrame, character);
+            }
+        }
+    }
+
+    for (const timeFrame of timeframesRoster) {
+        populateTable(timeFrame, null);
+        draggableTable(timeFrame, null);
+        checkReset(timeFrame, null);
+        resettableSection(timeFrame, null);
+        hidableSection(timeFrame, null);
         countDown(timeFrame);
     }
 
     dropdownMenuHelper();
     tableEventListeners();
 
-    setInterval(function() {
-        for (const timeFrame of timeframes) {
+    setInterval(function () {
+        for (const timeFrame of timeframesRoster) {
             checkReset(timeFrame);
             countDown(timeFrame);
         }
