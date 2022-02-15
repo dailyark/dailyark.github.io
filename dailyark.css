@@ -267,6 +267,8 @@ div.table_container[data-hide="hide"] .unhide_button {
     width: calc(50% - 20px);
     min-width: 420px;
     padding-top: 0;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .compact .activity_table thead tr {
