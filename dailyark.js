@@ -27,7 +27,7 @@ var dailies = {
         desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00."
     },
     "voyage-coop-mission": {
-        task: "Vooyage Co-Op Mission",
+        task: "Voyage Co-Op Mission",
         url: "https://papunika.com/voyage-guide/",
         short: true,
         desc: "Appears multiple times per day."
