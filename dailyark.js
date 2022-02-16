@@ -640,7 +640,7 @@ const checkReset = function (timeFrame, char) {
     // originally we pulled this from RS, this expects that if the new day has happened 
     // its reset time, but we need to allow some freedom between 0 - 10am UTC (resetTime).
     const isAfterReset = new Date().getUTCHours() >= resetHour;
-    if (updateTime.getUTCHours() < resetHour && nextdate.getTime() > updateTime.getTime() && isAfterReset) {
+    if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && nextdate.getTime() > updateTime.getTime() && isAfterReset) {
         resetTable(timeFrame, true, profilePrefix);
     }
 };
@@ -881,6 +881,13 @@ window.onload = function () {
         for (const timeFrame of timeframesRoster) {
             checkReset(timeFrame);
             countDown(timeFrame);
+        }
+        for (const timeFrame of timeframesCharacter) {
+            let characterArray = charactersStored.split(',');
+            for (const index in characterArray) {
+                character = characterArray[index];
+                checkReset(timeFrame, character);
+            }
         }
     }, 1000);
 };
