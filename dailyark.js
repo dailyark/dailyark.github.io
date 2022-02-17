@@ -691,14 +691,17 @@ const countDown = function (timeFrame) {
     }    
 };
 
-const populateNavigation = function(timeframe, character){
-    let navigation = document.getElementById('character_dropdown')
-    if(timeframe === "dailychar"){
-        text = "Daily"
-    }else{
-        text = "Weekly"
+const populateNavigation = function(index, character){
+    let navigation = document.getElementById('character_dropdown');
+    charNavigation = '';
+    if(index > 0){
+        charNavigation +='<div class="dropdown-divider"></div>';
     }
-    navigation.innerHTML += '<a href="#'+character+'_'+timeframe+'" class="dropdown-item" id="'+character+'_'+timeframe+'_nav">'+character+' '+text+'</a>'
+    charNavigation +='<h6 class="dropdown-header">'+character+'</h6>';
+    for(let timeframe in timeframesRoster){
+        charNavigation += '<a href="#'+character+'_'+timeframesCharacter[timeframe]+'" class="dropdown-item sub-color" id="'+character+'_'+timeframesCharacter[timeframe]+'_nav" style="text-transform: capitalize;">'+timeframesRoster[timeframe]+'</a>';
+    }
+    navigation.innerHTML += charNavigation;
 }
 
 const charactersFunction = function () {
@@ -876,8 +879,8 @@ window.onload = function () {
                 checkReset(timeFrame, character);
                 resettableSection(timeFrame, character);
                 hidableSection(timeFrame, character);
-                populateNavigation(timeFrame, character);
             }
+            populateNavigation(index, character);
         }
     }
 
