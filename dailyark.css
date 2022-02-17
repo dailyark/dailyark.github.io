@@ -11,6 +11,10 @@ body {
     margin-bottom: 10px;
 }
 
+.nav-char {
+    color: rgba(255,255,255,.55);
+}
+
 .navbar-nav > li > .dropdown-menu {
     background-color: #343a40;
     margin-bottom: 10px;

@@ -697,7 +697,7 @@ const populateNavigation = function(index, character){
     if(index > 0){
         charNavigation +='<div class="dropdown-divider"></div>';
     }
-    charNavigation +='<h6 class="dropdown-header">'+character+'</h6>';
+    charNavigation +='<h6 class="dropdown-header nav-char">'+character+'</h6>';
     for(let timeframe in timeframesRoster){
         charNavigation += '<a href="#'+character+'_'+timeframesCharacter[timeframe]+'" class="dropdown-item sub-color" id="'+character+'_'+timeframesCharacter[timeframe]+'_nav" style="text-transform: capitalize;">'+timeframesRoster[timeframe]+'</a>';
     }
