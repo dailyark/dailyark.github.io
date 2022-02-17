@@ -649,8 +649,8 @@ const checkReset = function (timeFrame, char) {
  * @param {String} timeFrame
  */
 const countDown = function (timeFrame) {
-    const resetHour = 10;
-    const resetday = 4;
+    const resetHour = 10; // 10am
+    const resetday = 4; // Thursday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() >= resetday;
 
@@ -684,7 +684,11 @@ const countDown = function (timeFrame) {
         Math.floor(remainingtime % 60) //s
     ];
 
-    document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+    if(timeFrame == 'weeklies'){
+        document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '0d ') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+    } else {
+        document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+    }    
 };
 
 const populateNavigation = function(timeframe, character){
