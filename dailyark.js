@@ -27,7 +27,7 @@ var dailies = {
         desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00."
     },
     "voyage-coop-mission": {
-        task: "Vooyage Co-Op Mission",
+        task: "Voyage Co-Op Mission",
         url: "https://papunika.com/voyage-guide/",
         short: true,
         desc: "Appears multiple times per day."
@@ -683,6 +683,16 @@ const countDown = function (timeFrame) {
     document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
 };
 
+const populateNavigation = function(timeframe, character){
+    let navigation = document.getElementById('character_dropdown')
+    if(timeframe === "dailychar"){
+        text = "Daily"
+    }else{
+        text = "Weekly"
+    }
+    navigation.innerHTML += '<a href="#'+character+'_'+timeframe+'" class="dropdown-item" id="'+character+'_'+timeframe+'_nav">'+character+' '+text+'</a>'
+}
+
 const charactersFunction = function () {
     let charactersStored = storage.getItem('characters');
     let characterControl = document.getElementById('character-control');
@@ -861,6 +871,7 @@ window.onload = function () {
                 checkReset(timeFrame, character);
                 resettableSection(timeFrame, character);
                 hidableSection(timeFrame, character);
+                populateNavigation(timeFrame, character);
             }
         }
     }
