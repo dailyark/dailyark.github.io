@@ -475,7 +475,6 @@ const draggableTable = function (timeFrame, char) {
 const resetTable = function (timeFrame, html, char) {
     profilePrefix = char;
     let tableRows;
-    console.log(profilePrefix);
     if (profilePrefix != null) {
         tableRows = document.querySelectorAll('#' + profilePrefix + '_' + timeFrame + '_table tbody tr');
     } else {
@@ -651,21 +650,26 @@ const checkReset = function (timeFrame, char) {
  */
 const countDown = function (timeFrame) {
     const resetHour = 10;
+    const resetday = 4;
+    const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
+    const isAfterWeeklyReset = new Date().getUTCDay() >= resetday;
+
     let nextdate = new Date();
 
     if (timeFrame == 'weeklies') {
-        let resetday = 4;
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
         let weekmodifier = (7 + resetday - nextdate.getUTCDay()) % 7;
         nextdate.setUTCDate(nextdate.getUTCDate() + weekmodifier);
+        if(isAfterWeeklyReset && isAfterDailyReset){
+            nextdate.setUTCDate(nextdate.getUTCDate() + 7);
+        }
     } else {
-        const isAfterReset = new Date().getUTCHours() >= resetHour;
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
-        if (isAfterReset) {
+        if (isAfterDailyReset) {
             nextdate.setUTCDate(nextdate.getUTCDate() + 1);
         }
     }
@@ -751,7 +755,6 @@ const charactersFunction = function () {
     let deleteButtons = characterBody.querySelectorAll('#character-delete');
     for (let deleteButton of deleteButtons) {
         deleteButton.addEventListener('click', function (e) {
-            console.log("Click on delete");
             e.preventDefault();
             charactersArray = charactersArray.filter(e => e != this.dataset.character);
             if(charactersArray.length == 0){
@@ -785,7 +788,6 @@ const charactersFunction = function () {
     // Save data on submit
     characterForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        console.log("Adding char!")
 
         let characterNameField = this.querySelector('input#characterName');
         let characterErrorMsg = characterNameField.parentNode.querySelector('.invalid-feedback');
@@ -864,7 +866,6 @@ window.onload = function () {
 
         for (const index in characterArray) {
             character = characterArray[index];
-            console.log("Adding stuff for: ", character);
             for (const timeFrame of timeframesCharacter) {
                 populateTable(timeFrame, character);
                 draggableTable(timeFrame, character);
