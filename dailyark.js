@@ -652,7 +652,7 @@ const countDown = function (timeFrame) {
     const resetHour = 10; // 10am
     const resetday = 4; // Thursday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
-    const isAfterWeeklyReset = new Date().getUTCDay() >= resetday;
+    const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
 
     let nextdate = new Date();
 
