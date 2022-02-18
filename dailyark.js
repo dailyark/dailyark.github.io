@@ -20,6 +20,12 @@ var dailies = {
         short: true,
         desc: "5 Emotes per day (+1 with Blessing)."
     },
+    "trade-skill": {
+        task: "Trade Skill",
+        url: "https://papunika.com/life-skill/",
+        short: true,
+        desc: "Until energy is depleted."
+    },
     "adventure-island": {
         task: "Adventure Island",
         url: "https://lostarkive.com/guides/beginner/sea-activities/",
@@ -88,12 +94,6 @@ var dailychar = {
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
         desc: "3 Una tasks per day.</br>Can be expanded up to +3."
-    },
-    "trade-skill": {
-        task: "Trade Skill",
-        url: "https://papunika.com/life-skill/",
-        short: true,
-        desc: "Until energy is depleted."
     },
     "guild-support": {
         task: "Guild Support",
