@@ -601,7 +601,7 @@ const hidableSection = function (timeFrame, char) {
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = 22;
+    const resetHour = 10;
     const resetday = 4;
     let tableUpdateTime;
 
