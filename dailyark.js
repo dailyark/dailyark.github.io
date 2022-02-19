@@ -33,7 +33,7 @@ var dailies = {
         desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00."
     },
     "voyage-coop-mission": {
-        task: "Voyage Co-Op Mission",
+        task: "Sailing Co-Op Mission",
         url: "https://papunika.com/voyage-guide/",
         short: true,
         desc: "Appears multiple times per day."
@@ -120,22 +120,10 @@ var weeklychar = {
         desc: "1 per week per Boss (3 in total)."
     },
     "abyss-dungeon": {
-        task: "Abyss Dungeon 1",
+        task: "Abyss Dungeon",
         url: "https://papunika.com/abyss-dungeons/",
         short: true,
-        desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
-    },
-    "abyss-dungeon-2": {
-        task: "Abyss Dungeon 2",
-        url: "https://papunika.com/abyss-dungeons/",
-        short: true,
-        desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
-    },
-    "abyss-dungeon-3": {
-        task: "Abyss Dungeon 3",
-        url: "https://papunika.com/abyss-dungeons/",
-        short: true,
-        desc: "3 per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
+        desc: "Once per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
     },
     "una-weekly": {
         task: "Una Weekly 1",
