@@ -155,6 +155,24 @@ var weeklychar = {
         short: true,
         desc: "1 per week (shared between difficutlies)."
     },
+    "merchant-ship-exchange": {
+        task: "Merchant Ship Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
+    },
+    "silmael-bloodstone-exchange": {
+        task: "Silmael Bloodstone Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
+    },
+    "chaos-dungeon-shard-exchange": {
+        task: "Chaos Dungeon Shard Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
+    },
 }
 
 var weeklies = {
@@ -169,18 +187,6 @@ var weeklies = {
         url: "#",
         short: true,
         desc: "Once per week."
-    },
-    "merchant-ship-exchange": {
-        task: "Merchant Ship Exchange",
-        url: "#",
-        short: true,
-        desc: "Supply replenishes on weekly reset."
-    },
-    "silmael-bloodstone-exchange": {
-        task: "Silmael Bloodstone Exchange",
-        url: "#",
-        short: true,
-        desc: "Supply replenishes on weekly reset."
     },
     "pvp-token-exchange": {
         task: "PVP Token Exchange",
@@ -595,7 +601,8 @@ const hidableSection = function (timeFrame, char) {
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = 10;
+    const resetHour = 22;
+    const resetday = 4;
     let tableUpdateTime;
 
     if (profilePrefix != null) {
@@ -616,19 +623,24 @@ const checkReset = function (timeFrame, char) {
     nextdate.setUTCSeconds(0);
 
     //check lastupdated < last weekly reset
-    if (timeFrame == 'weeklies') {
-        let resetday = 4;
+    if (timeFrame == 'weeklies' || timeFrame == 'weeklychar') {
         let weekmodifier = (7 - resetday + nextdate.getUTCDay()) % 7;
         nextdate.setUTCDate(nextdate.getUTCDate() - weekmodifier);
     }
-
 
     // Checking for the update for the daily timeframe is a little more complex because 
     // originally we pulled this from RS, this expects that if the new day has happened 
     // its reset time, but we need to allow some freedom between 0 - 10am UTC (resetTime).
     const isAfterReset = new Date().getUTCHours() >= resetHour;
-    if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && nextdate.getTime() > updateTime.getTime() && isAfterReset) {
-        resetTable(timeFrame, true, profilePrefix);
+    const isAfterWeeklyReset = new Date().getUTCDay() >= resetday;
+    if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && updateTime.getTime() < nextdate.getTime() && isAfterReset) {
+        if ((timeFrame == 'weeklies' || timeFrame == 'weeklychar') && (updateTime.getUTCDay() < resetday || nextdate.getUTCDay() == resetday) && isAfterWeeklyReset) {
+            resetTable(timeFrame, true, profilePrefix);    
+        } else if (timeFrame == 'dailies' || timeFrame == 'dailychar'){
+            resetTable(timeFrame, true, profilePrefix);
+        } else {
+            return;
+        }
     }
 };
 
