@@ -82,7 +82,7 @@ body {
     padding: 0 5px;
 }
 
-#profile-button span.expanding_text,
+#compact-button span.expanding_text,
 #layout-button span.expanding_text {
     font-size: 1rem;
     font-weight: normal;
@@ -478,4 +478,9 @@ footer a img {
     .activity_table td.activity_name {
         width: 66%;
     }
+}
+
+.interact {
+  touch-action: none;
+  user-select: none;
 }

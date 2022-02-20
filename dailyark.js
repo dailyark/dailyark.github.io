@@ -540,8 +540,10 @@ const resettableSection = function (timeFrame, char) {
         }
         if (profilePrefix != null) {
             storage.removeItem(profilePrefix + '-' + timeFrame + '-order');
+            storage.removeItem('pos_'+profilePrefix+'_'+timeFrame+'_table');
         } else {
             storage.removeItem(timeFrame + '-order');
+            storage.removeItem('pos_'+timeFrame);
         }
         window.location.reload();
     });
@@ -720,7 +722,7 @@ const charactersFunction = function () {
             characterBody.innerHTML +=
                 '<div class="table_container_characters">'+
                 '<div id="' + character + '_dailychar" class="table_container ' + character + '_dailychar_table">' +
-                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="dailychar" data-character="'+character+'">' +
+                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="dailychar" data-character="'+character+'">' +
                 '<thead>' +
                 '<tr>' +
                 '<th>' + character + ' Daily</th>' +
@@ -737,7 +739,7 @@ const charactersFunction = function () {
                 '</table>' +
                 '</div>'+
                 '<div id="' + character + '_weeklychar" class="table_container ' + character + '_weeklychar_table">' +
-                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="weeklychar" data-character="'+character+'">' +
+                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="weeklychar" data-character="'+character+'">' +
                 '<thead>' +
                 '<tr>' +
                 '<th>' + character + ' Weekly</th>' +
@@ -818,8 +820,7 @@ const charactersFunction = function () {
 }
 
 const layouts = function () {
-    const layoutButton = document.getElementById('layout-button');
-    const layoutGlyph = layoutButton.querySelector('.glyph');
+    const layoutButton = document.getElementById('compact-button');
     let currentLayout = storage.getItem('current-layout') ?? 'default';
     if (currentLayout !== 'default') {
         document.body.classList.add('compact');
@@ -842,6 +843,33 @@ const layouts = function () {
         }
     });
 };
+
+const positions = function () {
+    keys = Object.keys(localStorage), i = keys.length;
+    while(i--){
+        var item = keys[i];
+        if(item.startsWith('pos_')){
+            var element = document.getElementById(item.substring(4))
+            element.style.transform = localStorage.getItem(keys[i])
+        }
+    }
+}
+
+const resetPositions = function () {
+    const layoutButton = document.getElementById('layout-button');
+    layoutButton.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        keys = Object.keys(localStorage), i = keys.length;
+        while(i--){
+            var item = keys[i];
+            if(item.startsWith('pos_')){
+                localStorage.removeItem(item);
+            }
+        }
+        window.location.reload();
+    });
+}
 
 /**
  * Make bootstrap 5 dropdown menus collapse after link is clicked
@@ -866,6 +894,8 @@ const dropdownMenuHelper = function () {
 window.onload = function () {
     charactersFunction();
     layouts();
+    positions();
+    resetPositions();
 
     let charactersStored = storage.getItem('characters');
     if (charactersStored !== null) {
