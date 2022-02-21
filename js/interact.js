@@ -2,6 +2,8 @@ var x = 0; var y = 0
 // target elements with the "draggable" class
 interact('.draggable')
     .draggable({
+        // allow only dragging from the handle
+        allowFrom : '.drag-handle',
         // keep the element within the area of it's parent
         modifiers: [
             interact.modifiers.snap({

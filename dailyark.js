@@ -728,6 +728,7 @@ const charactersFunction = function () {
                 '<th>' + character + ' Daily</th>' +
                 '<td>' +
                 '<span class="text-nowrap">' +
+                '<button class="drag-handle expanding_button btn btn-secondary btn-sm" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
                 '<button id="' + character + '_dailychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
                 '<button id="' + character + '_dailychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
                 '<button id="' + character + '_dailychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
@@ -745,6 +746,7 @@ const charactersFunction = function () {
                 '<th>' + character + ' Weekly</th>' +
                 '<td>' +
                 '<span class="text-nowrap">' +
+                '<button class="drag-handle expanding_button btn btn-secondary btn-sm" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
                 '<button id="' + character + '_weeklychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
                 '<button id="' + character + '_weeklychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
                 '<button id="' + character + '_weeklychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
