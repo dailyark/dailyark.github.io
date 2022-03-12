@@ -51,14 +51,14 @@ var dailies = {
         desc: "At specific times."
     },
     "kalthertz": {
-        task: "Free pirates on Kaltherz",
-        url: "#",
+        task: "Free pirates on Kalthertz",
+        url: "https://lost-ark.maxroll.gg/island/kalthertz",
         short: true,
-        desc: "Free pirates on Kaltherz. (free the ones that cost 600 or 900 coins, most cost effective.)"
+        desc: "Free pirates on Kalthertz. (free the ones that cost 600 or 900 coins, most cost effective.)"
     },
     "anguish": {
         task: "Anguised Isle Daily",
-        url: "#",
+        url: "https://lost-ark.maxroll.gg/island/anguished-isle",
         short: true,
         desc: "???"
     },
