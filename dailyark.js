@@ -50,6 +50,24 @@ var dailies = {
         short: true,
         desc: "At specific times."
     },
+    "kalthertz": {
+        task: "Free pirates on Kaltherz",
+        url: "#",
+        short: true,
+        desc: "Free pirates on Kaltherz. (free the ones that cost 600 or 900 coins, most cost effective.)"
+    },
+    "anguish": {
+        task: "Anguised Isle Daily",
+        url: "#",
+        short: true,
+        desc: "???"
+    },
+    "arkesia-gp": {
+        task: "Arkesia Grand Prix",
+        url: "#",
+        short: true,
+        desc: "On the even hours."
+    },
 };
 
 var dailychar = {
@@ -205,6 +223,12 @@ var weeklies = {
         url: "#",
         short: true,
         desc: "Determined by the occupying guild."
+    },
+    "arkesia-gp-vendor": {
+        task: "Arkesia Grand Prix Vendor",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
     },
 };
 
@@ -603,7 +627,7 @@ const hidableSection = function (timeFrame, char) {
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = 10;
+    const resetHour = 11;
     const resetday = 4;
     let tableUpdateTime;
 
@@ -651,7 +675,7 @@ const checkReset = function (timeFrame, char) {
  * @param {String} timeFrame
  */
 const countDown = function (timeFrame) {
-    const resetHour = 10; // 10am
+    const resetHour = 11; // 10am
     const resetday = 4; // Thursday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
