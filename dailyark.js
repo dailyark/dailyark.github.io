@@ -627,7 +627,7 @@ const hidableSection = function (timeFrame, char) {
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = 11;
+    const resetHour = 10;
     const resetday = 4;
     let tableUpdateTime;
 
@@ -675,7 +675,7 @@ const checkReset = function (timeFrame, char) {
  * @param {String} timeFrame
  */
 const countDown = function (timeFrame) {
-    const resetHour = 11; // 10am
+    const resetHour = 10; // 10am
     const resetday = 4; // Thursday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
