@@ -372,6 +372,7 @@ const tableEventListeners = function () {
             } else {
                 storage.setItem(thisTimeframe + '-updated', new Date().getTime());
             }
+            eventTracking("click", "slugs", thisCharacter + '-' + thisTimeframe);
         });
 
         let descriptionAnchors = colorCell.querySelectorAll('a');
@@ -388,6 +389,7 @@ const tableEventListeners = function () {
             let taskSlug = thisRow.dataset.task;
             let thisCharacter = this.closest('table').dataset.character;
             thisRow.dataset.completed = 'hide';
+            eventTracking("hide", "slugs", taskSlug);
             if (thisCharacter != null) {
                 storage.setItem(thisCharacter + '-' + taskSlug, 'hide');
             } else {
@@ -412,6 +414,7 @@ const draggableTable = function (timeFrame, char) {
 
     for (let row of targetRows) {
         row.addEventListener('dragstart', function (e) {
+            eventTracking("drag start", "layout", "table layout");
             dragRow = e.target;
         });
 
@@ -456,6 +459,7 @@ const draggableTable = function (timeFrame, char) {
             for (let clearRow of clearRows) {
                 clearRow.classList.remove('dragover');
             }
+            eventTracking("drag end", "layout", "table layout");
         });
 
         row.addEventListener('drop', function (e) {
@@ -563,9 +567,11 @@ const resettableSection = function (timeFrame, char) {
             }
         }
         if (profilePrefix != null) {
+            eventTracking("reset", "layout", profilePrefix + '-' + timeFrame + '-order');
             storage.removeItem(profilePrefix + '-' + timeFrame + '-order');
             storage.removeItem('pos_'+profilePrefix+'_'+timeFrame+'_table');
         } else {
+            eventTracking("reset", "layout", timeFrame + '-order');
             storage.removeItem(timeFrame + '-order');
             storage.removeItem('pos_'+timeFrame);
         }
@@ -596,10 +602,12 @@ const hidableSection = function (timeFrame, char) {
         if (thisCharacter != null) {
             hideTable = document.querySelector('div.' + thisCharacter + '_' + timeFrame + '_table');
             hideTable.dataset.hide = 'hide';
+            eventTracking("hide", "layout", thisCharacter + '-' + timeFrame + '-hide');
             storage.setItem(thisCharacter + '-' + timeFrame + '-hide', 'hide');
         } else {
             hideTable = document.querySelector('div.' + timeFrame + '_table');
             hideTable.dataset.hide = 'hide';
+            eventTracking("hide", "layout", timeFrame + '_table');
             storage.setItem(timeFrame + '-hide', 'hide');
         }
     });
@@ -609,10 +617,12 @@ const hidableSection = function (timeFrame, char) {
         if (thisCharacter != null) {
             hideTable = document.querySelector('div.' + thisCharacter + '_' + timeFrame + '_table');
             hideTable.dataset.hide = '';
+            eventTracking("unhide", "layout", thisCharacter + '-' + timeFrame + '-hide');
             storage.removeItem(thisCharacter + '-' + timeFrame + '-hide');
         } else {
             hideTable = document.querySelector('div.' + timeFrame + '_table');
             hideTable.dataset.hide = '';
+            eventTracking("unhide", "layout", timeFrame + '_table');
             storage.removeItem(timeFrame + '-hide');
         }
 
@@ -807,6 +817,7 @@ const charactersFunction = function () {
                 storage.removeItem(prefix + timeFrame + '-order');
                 storage.removeItem(prefix + timeFrame + '-updated');
             }
+            eventTracking("remove character", "characters", prefix);
 
             window.location.reload();
         });
@@ -834,6 +845,7 @@ const charactersFunction = function () {
             characterName.classList.add('is-invalid');
             characterErrorMsg.innerHTML = 'Character already exists';
         } else {
+            eventTracking("add character", "characters", characterNameField.value);
             charactersArray.push(characterNameField.value);
             storage.setItem('characters', charactersArray.join(','));
             window.location.reload();
@@ -859,10 +871,12 @@ const layouts = function () {
         let setLayout = document.body.classList.contains('compact') ? 'compact' : 'default';
 
         if (setLayout == 'default') {
+            eventTracking("set layout", "layout", "compact");
             storage.setItem('current-layout', 'compact');
             document.body.classList.add('compact');
             layoutButton.innerHTML = '⊞<span class="expanding_text">&nbsp;Full Mode</span>';
         } else {
+            eventTracking("set layout", "layout", "default");
             storage.removeItem('current-layout');
             document.body.classList.remove('compact');
             layoutButton.innerHTML = '⊟<span class="expanding_text">&nbsp;Compact Mode</span>';
@@ -885,7 +899,7 @@ const resetPositions = function () {
     const layoutButton = document.getElementById('layout-button');
     layoutButton.addEventListener('click', function (e) {
         e.preventDefault();
-
+        eventTracking("reset", "layout", "");
         keys = Object.keys(localStorage), i = keys.length;
         while(i--){
             var item = keys[i];
@@ -893,6 +907,7 @@ const resetPositions = function () {
                 localStorage.removeItem(item);
             }
         }
+
         window.location.reload();
     });
 }
@@ -914,6 +929,19 @@ const dropdownMenuHelper = function () {
                 bsCollapse.toggle();
             }
         });
+    });
+};
+
+/**
+ * Track events with google analytics
+ * @param {string} action of the event
+ * @param {string} category of the event
+ * @param {string} label optional extra information about the event
+ */
+const eventTracking = function(action, category, label){
+    gtag('event', action, {
+        'event_category': category,
+        'event_label': label
     });
 };
 
