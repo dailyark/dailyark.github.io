@@ -995,10 +995,12 @@ window.onload = function () {
             countDown(timeFrame);
         }
         for (const timeFrame of timeframesCharacter) {
-            let characterArray = charactersStored.split(',');
-            for (const index in characterArray) {
-                character = characterArray[index];
-                checkReset(timeFrame, character);
+            if (charactersStored !== null) {
+                let characterArray = charactersStored.split(',');
+                for (const index in characterArray) {
+                    character = characterArray[index];
+                    checkReset(timeFrame, character);
+                }
             }
         }
     }, 1000);
