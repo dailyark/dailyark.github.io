@@ -1,4 +1,4 @@
-[![DailyArk](./img/dailyark.png)](https://dailyark.github.io)
+[![DailyArk](./includes/img/dailyark.png)](https://dailyark.github.io)
 # DailyArk - Dailies and Weeklies for Lost Ark
 
 ## Features

@@ -215,7 +215,18 @@ div.table_container[data-hide="hide"] .unhide_button {
     display: none;
 }
 
+.activity_table td.activity_name button.note-button {
+    position: absolute;
+    top: 5px;
+    right: 40px;
+    display: none;
+}
+
 .activity_table tbody tr:hover td.activity_name button.hide-button {
+    display: inline-block;
+}
+
+.activity_table tbody tr:hover td.activity_name button.note-button {
     display: inline-block;
 }
 
@@ -275,8 +286,8 @@ div.table_container[data-hide="hide"] .unhide_button {
 
 .compact .activity_tables .table_container {
     margin: 0 10px;
-    width: 40%;
-    width: calc(50% - 20px);
+    /* width: 40%;
+    width: calc(50% - 20px); */
     min-width: 420px;
     padding-top: 0;
     display: inline-block;
@@ -357,6 +368,13 @@ div.table_container[data-hide="hide"] .unhide_button {
     right: auto;
 }
 
+.compact .activity_table td.activity_name button.note-button {
+    /* left: 10px; */
+    position: relative;
+    top: auto;
+    right: auto;
+}
+
 .compact #rs3dailyshops_totalprofit {
     float:none;
 }
@@ -420,6 +438,7 @@ div.table_container[data-hide="hide"] .unhide_button {
 
 footer {
     text-align: center;
+    margin-top: 15px;
 }
 
 footer a,

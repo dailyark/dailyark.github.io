@@ -321,7 +321,7 @@ const populateTable = function (timeFrame, char) {
 
     if (['asc', 'desc', 'alpha'].includes(customOrder)) {
         table.dataset.sort = customOrder;
-        const tableRows = Array.from(tbody.querySelectorAll('tr'));
+        let tableRows = Array.from(tbody.querySelectorAll('tr'));
         tableRows.sort((a, b) => {
             if (customOrder == 'alpha') {
                 return a.dataset.task.localeCompare(b.dataset.task)
@@ -334,6 +334,13 @@ const populateTable = function (timeFrame, char) {
 
         for (let sortedrow of tableRows) {
             tbody.appendChild(sortedrow);
+        }
+    }
+
+    let tableRows = Array.from(tbody.querySelectorAll('tr'));
+    for (let row of tableRows) {
+        if (row.dataset.completed == 'hide') {
+            tbody.appendChild(row);
         }
     }
 };
@@ -385,6 +392,7 @@ const tableEventListeners = function () {
 
     for (let rowHide of rowsHide) {
         rowHide.addEventListener('click', function () {
+            let thisTbody = this.closest('tbody');
             let thisRow = this.closest('tr');
             let taskSlug = thisRow.dataset.task;
             let thisCharacter = this.closest('table').dataset.character;
@@ -395,6 +403,7 @@ const tableEventListeners = function () {
             } else {
                 storage.setItem(taskSlug, 'hide');
             }
+            thisTbody.appendChild(thisRow);
         });
     }
 };
@@ -762,7 +771,7 @@ const charactersFunction = function () {
                 '<th>' + character + ' Daily</th>' +
                 '<td>' +
                 '<span class="text-nowrap">' +
-                '<button class="drag-handle expanding_button btn btn-secondary btn-sm" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
+                '<button class="drag-handle expanding_button btn btn-secondary btn-sm active" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
                 '<button id="' + character + '_dailychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
                 '<button id="' + character + '_dailychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
                 '<button id="' + character + '_dailychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
@@ -780,7 +789,7 @@ const charactersFunction = function () {
                 '<th>' + character + ' Weekly</th>' +
                 '<td>' +
                 '<span class="text-nowrap">' +
-                '<button class="drag-handle expanding_button btn btn-secondary btn-sm" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
+                '<button class="drag-handle expanding_button btn btn-secondary btn-sm active" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
                 '<button id="' + character + '_weeklychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
                 '<button id="' + character + '_weeklychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
                 '<button id="' + character + '_weeklychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
