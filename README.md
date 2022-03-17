@@ -17,6 +17,7 @@
 ## Requests
 
 Please submit any missing tasks, bugs or new feature requests to the [issue tracker](https://github.com/dailyark/dailyark.github.io/issues).
+Or join the DailyArk [Discord](https://discord.gg/KW7nAzwU6W)
 
 ## Credits
 * Original Source code by [DailyScape](https://dailyscape.github.io)
