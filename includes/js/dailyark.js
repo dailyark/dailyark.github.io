@@ -50,12 +50,6 @@ var dailies = {
         short: true,
         desc: "At specific times."
     },
-    "kalthertz": {
-        task: "Free pirates on Kalthertz",
-        url: "https://lost-ark.maxroll.gg/island/kalthertz",
-        short: true,
-        desc: "Free pirates on Kalthertz. (free the ones that cost 600 or 900 coins, most cost effective.)"
-    },
     "anguish": {
         task: "Anguised Isle Daily",
         url: "https://lost-ark.maxroll.gg/island/anguished-isle",
@@ -119,6 +113,12 @@ var dailychar = {
         short: true,
         desc: "1 Donation per day.</br>1 Research Support per day."
     },
+    "kalthertz": {
+        task: "Free pirates on Kalthertz",
+        url: "https://lost-ark.maxroll.gg/island/kalthertz",
+        short: true,
+        desc: "Free pirates on Kalthertz. (free the ones that cost 600 or 900 coins, most cost effective.)"
+    }
 }
 
 var weeklychar = {
