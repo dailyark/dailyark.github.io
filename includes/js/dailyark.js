@@ -954,6 +954,62 @@ const eventTracking = function(action, category, label){
     });
 };
 
+/**
+ * Exports current localStorage to file
+ */
+const exportData = function(){
+    window.localStorage.setItem("dailyArk-export", 1);
+    var exportJson = JSON.stringify(window.localStorage);
+    var jsonBlob = new Blob([exportJson], {type:'application/json'});
+    var fileName = "dailyArk-export-"+new Date();
+
+    var download = document.createElement("a");
+    download.download = fileName;
+    download.innerHTML = "Download File";
+    if(window.webkitURL != null){
+        download.href = window.webkitURL.createObjectURL(jsonBlob);
+    }else{
+        download.href = window.URL.createObjectURL(jsonBlob);
+        download.onclick = destroyClickedElement;
+        download.style.display = "none";
+        document.body.appendChild(download);
+    }
+    download.click();
+    alert("DailyArk data succesfully exported.");
+}
+
+/**
+ * Imports save file to localStorage
+ */
+const importData = function(){
+    var input = document.getElementById('import');
+
+    input.onchange = event => {
+        var file = event.target.files[0];
+        
+        var reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+
+        reader.onload = readerEvent => {
+            var content = readerEvent.target.result;
+            json = JSON.parse(content);
+            if(json["dailyArk-export"] == 1){
+                storage.clear();
+                for(var key in json){
+                    storage.setItem(key, json[key]);
+                }
+                if(!alert("DailyArk data succesfully imported.")){
+                    window.location.reload();
+                }
+            }
+            else {
+                alert("This is not a valid DailyArk file.");
+            }
+        }
+    }
+    input.click();
+}
+
 window.onload = function () {
     charactersFunction();
     layouts();

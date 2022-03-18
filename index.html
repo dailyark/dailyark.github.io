@@ -87,6 +87,15 @@
                         <a class="dropdown-item" href="https://discord.com/invite/CDNuR7fs2C" target="_blank" rel="noreferrer noopener">Papunika Discord</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Data
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" onclick="exportData()" target="_blank" rel="noreferrer noopener">Export Data</a>
+                        <a class="dropdown-item" onclick="importData()" target="_blank" rel="noreferrer noopener">Import Data</a>
+                    </div>
+                </li>
                 <li>
                     <div class="nav-icon-bar" title="Daily Reset">
                         <i class="fa-solid fa-calendar-day nav-icon" title="Daily Reset"></i><b>Daily: </b><span id="countdown-dailies" class="countdown"></span>
@@ -179,6 +188,7 @@
 </template>
 
 <div id="tooltip" style="display:none; visibility: hidden;"></div>
+<input type="file" id="import" style="display:none"/>
 
 <footer>
     <p>
