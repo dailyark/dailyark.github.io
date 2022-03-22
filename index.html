@@ -109,7 +109,7 @@
             </ul>
             <ul class="navbar-nav nav-pills ms-auto nav-right">
                 <li class="nav-item">
-                    <a class="nav-link expanding_button" href="#" id="layout-button" title="Reset Positions">↺<span class="expanding_text">&nbsp;Reset Positions</span></a>
+                    <a class="nav-link expanding_button" href="#" id="layout-button" title="Reset Positions, Hidden Tasks, and Unchecks Tasks">↺<span class="expanding_text">&nbsp;Reset Everything</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link expanding_button" href="#" id="compact-button" title="Toggle Layout">⊟<span class="expanding_text">&nbsp;Compact Mode</span></a>
@@ -135,7 +135,7 @@
 </nav>
 
 <div class="container-xl activity_tables" id="characters_body">
-    <div id="dailies" class="table_container dailies_table interact draggable">
+    <div id="dailies" class="table_container dailies_table interact draggable" data-x="0" data-y="0">
         <table id="dailies_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="dailies">
             <thead>
                 <tr>
@@ -145,7 +145,7 @@
                             <button class="drag-handle expanding_button btn btn-secondary btn-sm active" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> 
                             <button id="dailies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button>
                             <button id="dailies_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
-                            <button id="dailies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button>
+                            <button id="dailies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding, position, and order to default">↺<span class="expanding_text"> Reset</span></button>
                         </span>
                     </td>
                 </tr>
@@ -154,8 +154,8 @@
         </table>
     </div>
 
-    <div id="weeklies" class="table_container weeklies_table  draggable">
-        <table id="weeklies_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="weeklies">
+    <div id="weeklies" class="table_container weeklies_table  draggable" data-x="0" data-y="0">
+        <table id="weeklies_table" class="activity_table table table-dark table-striped table-hover" data-timeframe="weeklies" data-x="0" data-y="0">
             <thead>
                 <tr>
                     <th>Roster Weeklies</span></th>
@@ -164,7 +164,7 @@
                             <button class="drag-handle expanding_button btn btn-secondary btn-sm active" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> 
                             <button id="weeklies_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button>
                             <button id="weeklies_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
-                            <button id="weeklies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button>
+                            <button id="weeklies_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding, position, order to default">↺<span class="expanding_text"> Reset</span></button>
                         </span>
                     </td>
                 </tr>
