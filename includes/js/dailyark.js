@@ -765,7 +765,7 @@ const charactersFunction = function () {
             characterBody.innerHTML +=
                 '<div class="table_container_characters">'+
                 '<div id="' + character + '_dailychar" class="table_container ' + character + '_dailychar_table">' +
-                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="dailychar" data-character="'+character+'">' +
+                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="dailychar" data-character="'+character+'" data-x="0" data-y="0">' +
                 '<thead>' +
                 '<tr>' +
                 '<th>' + character + ' Daily</th>' +
@@ -783,7 +783,7 @@ const charactersFunction = function () {
                 '</table>' +
                 '</div>'+
                 '<div id="' + character + '_weeklychar" class="table_container ' + character + '_weeklychar_table">' +
-                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="weeklychar" data-character="'+character+'">' +
+                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="weeklychar" data-character="'+character+'" data-x="0" data-y="0">' +
                 '<thead>' +
                 '<tr>' +
                 '<th>' + character + ' Weekly</th>' +
@@ -899,7 +899,9 @@ const positions = function () {
         var item = keys[i];
         if(item.startsWith('pos_')){
             var element = document.getElementById(item.substring(4))
-            element.style.transform = localStorage.getItem(keys[i])
+            if(element != null){
+                element.style.transform = localStorage.getItem(keys[i])
+            }
         }
     }
 }
