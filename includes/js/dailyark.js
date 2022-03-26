@@ -61,7 +61,7 @@ var dailies = {
         url: "#",
         short: true,
         desc: "On the even hours."
-    },
+    }
 };
 
 var dailychar = {
@@ -88,6 +88,12 @@ var dailychar = {
         url: "https://papunika.com/guardian-subjugations/",
         short: true,
         desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day."
+    },
+    "guardian-event": {
+        task: "Event Guardian Raid",
+        url: "#",
+        short: true,
+        desc: "Fight 3 guardians at the same time with scaled gear"
     },
     "una-daily": {
         task: "Una Daily 1",
@@ -160,6 +166,12 @@ var weeklychar = {
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
         desc: "3 Una tasks per week.</br>Can be expanded up to +1."
+    },
+    "guild-weekly": {
+        task: "Guild Weekly",
+        url: "#",
+        short: true,
+        desc: "Depens what the guild officers pick."
     },
     "abyss-raid": {
         task: "Abyss Raid",
