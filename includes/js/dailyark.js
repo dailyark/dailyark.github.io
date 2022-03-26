@@ -242,6 +242,12 @@ var weeklies = {
         short: true,
         desc: "Supply replenishes on weekly reset."
     },
+    "event-guardian-raid-vendor": {
+        task: "Event Guardian Raid Vendor",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset."
+    },
 };
 
 /**
