@@ -850,9 +850,9 @@ const charactersFunction = function () {
         });
     }
 
-    //alpha-numeric profile names only
+    //alpha profile names only
     characterName.addEventListener('keypress', function (e) {
-        if (!/^[A-Za-z0-9]+$/.test(e.key)) {
+        if (!/^[A-Za-z]+$/.test(e.key)) {
             e.preventDefault();
             return false;
         }
@@ -865,9 +865,9 @@ const charactersFunction = function () {
         let characterNameField = this.querySelector('input#characterName');
         let characterErrorMsg = characterNameField.parentNode.querySelector('.invalid-feedback');
 
-        if (!/^[A-Za-z0-9]+$/.test(characterNameField.value)) {
+        if (!/^[A-Za-z]+$/.test(characterNameField.value)) {
             characterName.classList.add('is-invalid');
-            characterErrorMsg.innerHTML = 'Alpha numeric and no spaces only';
+            characterErrorMsg.innerHTML = 'Letters only';
         } else if (charactersArray.includes(characterNameField.value)) {
             characterName.classList.add('is-invalid');
             characterErrorMsg.innerHTML = 'Character already exists';
