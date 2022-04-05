@@ -51,10 +51,10 @@ var dailies = {
         desc: "At specific times."
     },
     "anguish": {
-        task: "Anguised Isle Daily",
+        task: "Anguished Isle Daily",
         url: "https://lost-ark.maxroll.gg/island/anguished-isle",
         short: true,
-        desc: "???"
+        desc: "Once per day (daily quest to obtain key)."
     },
     "arkesia-gp": {
         task: "Arkesia Grand Prix",
