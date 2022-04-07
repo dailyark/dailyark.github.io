@@ -12,55 +12,64 @@ var dailies = {
         task: "Rapport Songs",
         url: "https://papunika.com/affinity/",
         short: true,
-        desc: "5 Songs per day (+1 with Blessing)."
+        desc: "5 Songs per day (+1 with Blessing).",
+        img: "rapport"
     },
     "rapport-actions-emotes": {
         task: "Rapport Emotes",
         url: "https://papunika.com/affinity/",
         short: true,
-        desc: "5 Emotes per day (+1 with Blessing)."
+        desc: "5 Emotes per day (+1 with Blessing).",
+        img: "rapport"
     },
     "trade-skill": {
         task: "Trade Skill",
         url: "https://papunika.com/life-skill/",
         short: true,
-        desc: "Until energy is depleted."
+        desc: "Until energy is depleted.",
+        img: "gathering"
     },
     "adventure-island": {
         task: "Adventure Island",
         url: "https://lostarkive.com/guides/beginner/sea-activities/",
         short: true,
-        desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00."
+        desc: "Sat-Sun at 14:00 & 21:00.</br>Mon-Fri at 21:00.",
+        img: "island"
     },
     "voyage-coop-mission": {
         task: "Sailing Co-Op Mission",
         url: "https://papunika.com/voyage-guide/",
         short: true,
-        desc: "Appears multiple times per day."
+        desc: "Appears multiple times per day.",
+        img: "quest"
     },
     "world-boss": {
         task: "World Boss",
         url: "#",
         short: true,
-        desc: "Once per day (only on specific days)."
+        desc: "Once per day (only on specific days).",
+        img: "world boss"
     },
     "chaos-gate": {
         task: "Chaos Gate",
         url: "#",
         short: true,
-        desc: "At specific times."
+        desc: "At specific times.",
+        img: "chaos gate"
     },
     "anguish": {
-        task: "Anguished Isle Daily",
+        task: "Anguished Isle",
         url: "https://lost-ark.maxroll.gg/island/anguished-isle",
         short: true,
-        desc: "Once per day (daily quest to obtain key)."
+        desc: "Once per day (daily quest to obtain key).",
+        img: "anguished isle"
     },
     "arkesia-gp": {
         task: "Arkesia Grand Prix",
         url: "#",
         short: true,
-        desc: "On the even hours."
+        desc: "On the even hours.",
+        img: "arkesia coin"
     }
 };
 
@@ -69,61 +78,71 @@ var dailychar = {
         task: "Chaos Dungeon 1",
         url: "https://lostarkive.com/guides/endgame/chaos-dungeons/",
         short: true,
-        desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day."
+        desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.",
+        img: "chaos dungeon"
     },
     "chaos-dungeon-2": {
         task: "Chaos Dungeon 2",
         url: "https://lostarkive.com/guides/endgame/chaos-dungeons/",
         short: true,
-        desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day."
+        desc: "Uses 50 Energy per run.</br>Gain 100 Energy per day.",
+        img: "chaos dungeon"
     },
     "guardian-raid": {
         task: "Guardian Raid 1",
         url: "https://papunika.com/guardian-subjugations/",
         short: true,
-        desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day."
+        desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.",
+        img: "guardian raids"
     },
     "guardian-raid-2": {
         task: "Guardian Raid 2",
         url: "https://papunika.com/guardian-subjugations/",
         short: true,
-        desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day."
+        desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.",
+        img: "guardian raids"
     },
     "guardian-event": {
         task: "Event Guardian Raid",
         url: "#",
         short: true,
-        desc: "Fight 3 guardians at the same time with scaled gear"
+        desc: "Fight 3 guardians at the same time with scaled gear",
+        img: "winter"
     },
     "una-daily": {
         task: "Una Daily 1",
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
-        desc: "3 Una tasks per day.</br>Can be expanded up to +3."
+        desc: "3 Una tasks per day.</br>Can be expanded up to +3.",
+        img: "una daily"
     },
     "una-daily-2": {
         task: "Una Daily 2",
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
-        desc: "3 Una tasks per day.</br>Can be expanded up to +3."
+        desc: "3 Una tasks per day.</br>Can be expanded up to +3.",
+        img: "una daily"
     },
     "una-daily-3": {
         task: "Una Daily 3",
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
-        desc: "3 Una tasks per day.</br>Can be expanded up to +3."
+        desc: "3 Una tasks per day.</br>Can be expanded up to +3.",
+        img: "una daily"
     },
     "guild-support": {
         task: "Guild Support",
         url: "#",
         short: true,
-        desc: "1 Donation per day.</br>1 Research Support per day."
+        desc: "1 Donation per day.</br>1 Research Support per day.",
+        img: "donation"
     },
     "kalthertz": {
-        task: "Free pirates on Kalthertz",
+        task: "Kalthertz",
         url: "https://lost-ark.maxroll.gg/island/kalthertz",
         short: true,
-        desc: "Free pirates on Kalthertz. (free the ones that cost 600 or 900 coins, most cost effective.)"
+        desc: "Free pirates on Kalthertz. (free the ones that cost 600 or 900 coins, most cost effective.)",
+        img: "pirate coin"
     }
 }
 
@@ -131,77 +150,90 @@ var weeklychar = {
     "guardian-challenge-mode": {
         task: "Guardian Challenge Mode 1",
         url: "https://papunika.com/guardian-subjugations/",
-        desc: "1 per week per Boss (3 in total)."
+        desc: "1 per week per Boss (3 in total).",
+        img: "guardian raid"
     },
     "guardian-challenge-mode-2": {
         task: "Guardian Challenge Mode 2",
         url: "https://papunika.com/guardian-subjugations/",
-        desc: "1 per week per Boss (3 in total)."
+        desc: "1 per week per Boss (3 in total).",
+        img: "guardian raid"
     },
     "guardian-challenge-mode-3": {
         task: "Guardian Challenge Mode 3",
         url: "https://papunika.com/guardian-subjugations/",
-        desc: "1 per week per Boss (3 in total)."
+        desc: "1 per week per Boss (3 in total).",
+        img: "guardian raid"
     },
     "abyss-dungeon": {
         task: "Abyss Dungeon",
         url: "https://papunika.com/abyss-dungeons/",
         short: true,
-        desc: "Once per week per Abyss Dungeon.</br>You can only complete one difficulty per week."
+        desc: "Once per week per Abyss Dungeon.</br>You can only complete one difficulty per week.",
+        img: "abyss dungeon"
     },
     "una-weekly": {
         task: "Una Weekly 1",
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
-        desc: "3 Una tasks per week.</br>Can be expanded up to +1."
+        desc: "3 Una tasks per week.</br>Can be expanded up to +1.",
+        img: "una weekly"
     },
     "una-weekly-2": {
         task: "Una Weekly 2",
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
-        desc: "3 Una tasks per week.</br>Can be expanded up to +1."
+        desc: "3 Una tasks per week.</br>Can be expanded up to +1.",
+        img: "una weekly"
     },
     "una-weekly-3": {
         task: "Una Weekly 3",
         url: "https://papunika.com/unas-tasks-overview/",
         short: true,
-        desc: "3 Una tasks per week.</br>Can be expanded up to +1."
+        desc: "3 Una tasks per week.</br>Can be expanded up to +1.",
+        img: "una weekly"
     },
     "guild-weekly": {
         task: "Guild Weekly",
         url: "#",
         short: true,
-        desc: "Depens what the guild officers pick."
+        desc: "Depends what the guild officers pick.",
+        img: "guild research"
     },
     "abyss-raid": {
         task: "Abyss Raid",
         url: "https://papunika.com/abyss-raids/",
         short: true,
-        desc: "1 per week per Abyss Raid."
+        desc: "1 per week per Abyss Raid.",
+        img: "abyssal"
     },
     "legion-raid": {
-        task: "Legion Raid",
+        task: "Legion Raid (unavailable on NA/EU)",
         url: "https://papunika.com/legion-raids/",
         short: true,
-        desc: "1 per week (shared between difficutlies)."
+        desc: "1 per week (shared between difficulties).",
+        img: "legion"
     },
     "merchant-ship-exchange": {
         task: "Merchant Ship Exchange",
         url: "#",
         short: true,
-        desc: "Supply replenishes on weekly reset."
+        desc: "Supply replenishes on weekly reset.",
+        img: "merchant"
     },
     "silmael-bloodstone-exchange": {
         task: "Silmael Bloodstone Exchange",
         url: "#",
         short: true,
-        desc: "Supply replenishes on weekly reset."
+        desc: "Supply replenishes on weekly reset.",
+        img: "sylmael bloodstone"
     },
     "chaos-dungeon-shard-exchange": {
         task: "Chaos Dungeon Shard Exchange",
         url: "#",
         short: true,
-        desc: "Supply replenishes on weekly reset."
+        desc: "Supply replenishes on weekly reset.",
+        img: "chaos dungeon"
     },
 }
 
@@ -210,43 +242,50 @@ var weeklies = {
         task: "Challenge Abyss Dungeon",
         url: "https://papunika.com/abyss-dungeons/",
         short: true,
-        desc: "1 per week per Challenge Abyss Dungeon."
+        desc: "1 per week per Challenge Abyss Dungeon.",
+        img: "chal abyss dungeon"
     },
     "gvg-guild-boss": {
         task: "GVG / Guild Boss",
         url: "#",
         short: true,
-        desc: "Once per week."
+        desc: "Once per week.",
+        img: "guild"
     },
     "pvp-token-exchange": {
         task: "PVP Token Exchange",
         url: "#",
         short: true,
-        desc: "Supply replenishes on weekly reset."
+        desc: "Supply replenishes on weekly reset.",
+        img: "pvp token"
     },
     "ghost-ship": {
         task: "Ghost Ship",
         url: "https://lostarkive.com/guides/beginner/sea-activities/",
         short: true,
-        desc: "At specific times."
+        desc: "At specific times.",
+        img: "ghost ship"
     },
     "pvp-island": {
         task: "PVP Island",
         url: "#",
         short: true,
-        desc: "Determined by the occupying guild."
+        desc: "Determined by the occupying guild.",
+        img: "pvp token"
     },
     "arkesia-gp-vendor": {
         task: "Arkesia Grand Prix Vendor",
         url: "#",
         short: true,
-        desc: "Supply replenishes on weekly reset."
+        desc: "Supply replenishes on weekly reset.",
+        img: "arkesia coin"
     },
     "event-guardian-raid-vendor": {
         task: "Event Guardian Raid Vendor",
         url: "#",
         short: true,
-        desc: "Supply replenishes on weekly reset."
+        desc: "Supply replenishes on weekly reset.",
+        img: "winter"
     },
 };
 
@@ -327,10 +366,14 @@ const populateTable = function (timeFrame, char) {
             }
         }
 
-        newRowAnchor.innerHTML = data[taskSlug].task;
+        if(!!data[taskSlug].img){
+            newRowAnchor.innerHTML = "<img class='icon' src='../includes/img/activities/"+data[taskSlug].img+".png' alt="+data[taskSlug].img+"/>"+data[taskSlug].task;
+        }else {
+            newRowAnchor.innerHTML =data[taskSlug].task
+        }
 
         if (!!data[taskSlug].desc) {
-            newRowColor.innerHTML = data[taskSlug].desc;
+                newRowColor.innerHTML = data[taskSlug].desc;
         }
 
         tbody.appendChild(newRow);
