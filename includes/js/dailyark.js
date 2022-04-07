@@ -259,6 +259,13 @@ var weeklies = {
         desc: "Supply replenishes on weekly reset.",
         img: "pvp token"
     },
+    "stronghold-activities":{
+        task: "Stronghold Activities",
+        url: "#",
+        short: true,
+        desc: "Once per week.",
+        img: "stronghold"
+    },
     "ghost-ship": {
         task: "Ghost Ship",
         url: "https://lostarkive.com/guides/beginner/sea-activities/",
@@ -271,7 +278,7 @@ var weeklies = {
         url: "#",
         short: true,
         desc: "Determined by the occupying guild.",
-        img: "pvp token"
+        img: "pvp island"
     },
     "arkesia-gp-vendor": {
         task: "Arkesia Grand Prix Vendor",
