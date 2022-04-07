@@ -503,3 +503,9 @@ footer a img {
   touch-action: none;
   user-select: none;
 }
+
+.icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 5px;
+}
