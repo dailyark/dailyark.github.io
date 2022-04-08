@@ -296,6 +296,26 @@ var weeklies = {
     },
 };
 
+const populateQuickswitch = function (timeFrame, char) {
+    if (timeFrame !== "dailychar")
+        return;
+
+    const button = document.createElement("button");
+    button.classList.add("btn");
+    button.classList.add("btn-secondary");
+    button.classList.add("bg-dark");
+    button.classList.add("fg-dark");
+    button.innerHTML = char;
+
+    const a = document.createElement("a");
+    a.classList.add("full-width");
+    a.href = "#" + char + "_dailychar";
+    a.appendChild(button);
+
+    const quickswitch = document.getElementById("quickswitch");
+    quickswitch.appendChild(a);
+};
+
 /**
  * Populate the HTML with data for a timeFrame and attach listeners
  * @param {String} timeFrame
@@ -1093,6 +1113,7 @@ window.onload = function () {
         for (const index in characterArray) {
             character = characterArray[index];
             for (const timeFrame of timeframesCharacter) {
+                populateQuickswitch(timeFrame, character);
                 populateTable(timeFrame, character);
                 draggableTable(timeFrame, character);
                 checkReset(timeFrame, character);
@@ -1114,6 +1135,12 @@ window.onload = function () {
 
     dropdownMenuHelper();
     tableEventListeners();
+
+    // Display quickswitch all at once. This stops the browser from looking
+    // as if it's partially loading the quickswitch pane as the site is loaded,
+    // because characters are added to quickswitch in the form of buttons
+    // from local storage.
+    document.getElementById("quickswitch").classList.remove("hidden");
 
     setInterval(function () {
         for (const timeFrame of timeframesRoster) {

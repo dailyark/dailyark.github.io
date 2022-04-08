@@ -489,3 +489,46 @@ footer a img {
 
 }
 
+.fg-dark {
+    color: #c3c3c3;
+}
+
+.full-width, .full-width > button {
+    width: 100%;
+    display: block;
+}
+
+.btn-group-vertical a {
+    text-decoration: none;
+}
+
+#quickswitch {
+    position: fixed;
+    left: 5px;
+    top: 65px;
+    z-index: -1;
+}
+
+#quickswitch .btn-secondary {
+    border-right: none;
+    border-left: none;
+    border-color: #050206;
+}
+
+#quickswitch .btn-secondary:first-child {
+    border-top: none;
+}
+
+#quickswitch .btn-secondary:last-child {
+    border-bottom: none;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 1312px) {
+    #quickswitch {
+        display: none !important;
+    }
+}
