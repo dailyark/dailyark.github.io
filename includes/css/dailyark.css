@@ -242,6 +242,11 @@ div.table_container[data-hide="hide"] .unhide_button {
     color: #4083ca;
 }
 
+.activity_table tr[data-completed="true"] .activity_color {
+    background-color: #163600;
+    box-shadow: inset 0 0 0 9999px #163600;
+}
+
 .activity_table tr[data-completed="hide"] {
     display: none;
     visibility: hidden;
