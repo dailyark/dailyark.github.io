@@ -1,3 +1,97 @@
+:root {
+    /* Light Mode */
+    --light-table-bg: #212529;
+    --light-table-striped-bg: #2c3034;
+    --light-table-striped-color: #fff;
+    --light-table-active-bg: #373b3e;
+    --light-table-active-color: #fff;
+    --light-table-hover-bg: #323539;
+    --light-table-hover-color: #fff;
+
+    --light-switch-shadow: #373d4e;
+    --light-switch-icon: "🌚";
+
+    /* Dark Mode */
+    --dark-table-bg: #0D1212;
+    --dark-table-striped-bg: #0D1212;
+    --dark-table-striped-color: #fff;
+    --dark-table-active-bg: #373b3e;
+    --dark-table-active-color: #fff;
+    --dark-table-hover-bg: #0D1212;
+    --dark-table-hover-color: #fff;
+
+    --dark-switch-shadow: #fce477;
+    --dark-switch-icon: "🌝";
+
+    /* Default Mode */
+    --bs-table-bg: var(--light-table-bg);
+    --bs-table-striped-bg: var(--light-table-striped-bg);
+    --bs-table-striped-color: var(--light-table-striped-color);
+    --bs-table-active-bg: var(--light-table-active-bg);
+    --bs-table-active-color: var(--light-table-active-color);
+    --bs-table-hover-bg: var(--light-table-hover-bg);
+    --bs-table-hover-color: var(--light-table-hover-color);
+
+    --switch-shadow-color: var(--light-switch-shadow);
+    --switch-icon: var(--light-switch-icon);
+}
+
+.main-switch:checked ~ #page {
+    --switch-shadow-color: var(--dark-switch-shadow);
+    --switch-icon: var(--dark-switch-icon);
+}
+
+.theme-switch:checked ~ .activity_table {
+    --bs-table-bg: var(--dark-table-bg);
+    --bs-table-striped-bg: var(--dark-table-striped-bg);
+    --bs-table-striped-color: var(--dark-table-striped-color);
+    --bs-table-active-bg: var(--dark-table-active-bg);
+    --bs-table-active-color: var(--dark-table-active-color);
+    --bs-table-hover-bg: var(--dark-table-hover-bg);
+    --bs-table-hover-color: var(--dark-table-hover-color);
+}
+
+.main-switch {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.theme-switch {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.switch-label {
+    cursor: pointer;
+    display: flex;
+}
+
+.switch-label::before {
+    content: var(--switch-icon);
+    font-size: 20px;
+    transition: text-shadow .2s;
+}
+
+.switch-label::after {
+    color: var(--switch-shadow-color);
+}
+
+.theme-switch:focus ~ #page .switch-label::before,
+.switch-label:hover::before {
+    text-shadow: 0 0 15px var(--switch-shadow-color);
+}
+
+.theme-switch:focus ~ #page .switch-label::after,
+.switch-label:hover::after {
+    opacity: 1;
+}
+
 body {
     background:#050206;
     color: #c3c3c3;
@@ -252,6 +346,11 @@ div.table_container[data-hide="hide"] .unhide_button {
     visibility: hidden;
 }
 
+.activity_table tr[data-completed="true"] .activity_color {
+    background-color: #163600;
+    box-shadow: inset 0 0 0 9999px #163600;
+}
+
 .activity_table tr[data-completed="true"] .activity_color .activity_check_off {
     display: none;
     visibility: hidden;
@@ -262,11 +361,15 @@ div.table_container[data-hide="hide"] .unhide_button {
     visibility: visible;
 }
 
-.activity_table {
-    --bs-table-bg: #0D1212;
-    --bs-table-striped-bg: #0D1212;
-    --bs-table-hover-bg: #0D1212;
-}
+/*.activity_table {*/
+/*    --bs-table-bg: var(--table-bg);*/
+/*    --bs-table-striped-bg: var(--table-striped-bg);*/
+/*    --bs-table-striped-color: var(--table-striped-color);*/
+/*    --bs-table-active-bg: var(--table-active-bg);*/
+/*    --bs-table-active-color: var(--table-active-color);*/
+/*    --bs-table-hover-bg: var(--table-hover-bg);*/
+/*    --bs-table-hover-color: var(--table-hover-color);*/
+/*}*/
 
 .activity_table thead {
     --bs-table-bg: #2B2D32;
@@ -493,4 +596,5 @@ footer a img {
     margin: 0px 0px;
 
 }
+
 

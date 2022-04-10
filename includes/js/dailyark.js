@@ -259,7 +259,7 @@ var weeklies = {
         desc: "Supply replenishes on weekly reset.",
         img: "pvp token"
     },
-    "stronghold-activities":{
+    "stronghold-activities": {
         task: "Stronghold Activities",
         url: "#",
         short: true,
@@ -373,14 +373,14 @@ const populateTable = function (timeFrame, char) {
             }
         }
 
-        if(!!data[taskSlug].img){
-            newRowAnchor.innerHTML = "<img class='icon' src='../includes/img/activities/"+data[taskSlug].img+".png' alt="+data[taskSlug].img+"/>"+data[taskSlug].task;
-        }else {
-            newRowAnchor.innerHTML =data[taskSlug].task
+        if (!!data[taskSlug].img) {
+            newRowAnchor.innerHTML = "<img class='icon' src='../includes/img/activities/" + data[taskSlug].img + ".png' alt=" + data[taskSlug].img + "/>" + data[taskSlug].task;
+        } else {
+            newRowAnchor.innerHTML = data[taskSlug].task
         }
 
         if (!!data[taskSlug].desc) {
-                newRowColor.innerHTML = data[taskSlug].desc;
+            newRowColor.innerHTML = data[taskSlug].desc;
         }
 
         tbody.appendChild(newRow);
@@ -646,11 +646,11 @@ const resettableSection = function (timeFrame, char) {
         if (profilePrefix != null) {
             eventTracking("reset", "layout", profilePrefix + '-' + timeFrame + '-order');
             storage.removeItem(profilePrefix + '-' + timeFrame + '-order');
-            storage.removeItem('pos_'+profilePrefix+'_'+timeFrame+'_table');
+            storage.removeItem('pos_' + profilePrefix + '_' + timeFrame + '_table');
         } else {
             eventTracking("reset", "layout", timeFrame + '-order');
             storage.removeItem(timeFrame + '-order');
-            storage.removeItem('pos_'+timeFrame);
+            storage.removeItem('pos_' + timeFrame);
         }
         window.location.reload();
     });
@@ -748,8 +748,8 @@ const checkReset = function (timeFrame, char) {
     const isAfterWeeklyReset = new Date().getUTCDay() >= resetday;
     if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && updateTime.getTime() < nextdate.getTime() && isAfterReset) {
         if ((timeFrame == 'weeklies' || timeFrame == 'weeklychar') && (updateTime.getUTCDay() < resetday || nextdate.getUTCDay() == resetday) && isAfterWeeklyReset) {
-            resetTable(timeFrame, true, profilePrefix);    
-        } else if (timeFrame == 'dailies' || timeFrame == 'dailychar'){
+            resetTable(timeFrame, true, profilePrefix);
+        } else if (timeFrame == 'dailies' || timeFrame == 'dailychar') {
             resetTable(timeFrame, true, profilePrefix);
         } else {
             return;
@@ -775,7 +775,7 @@ const countDown = function (timeFrame) {
         nextdate.setUTCSeconds(0);
         let weekmodifier = (7 + resetday - nextdate.getUTCDay()) % 7;
         nextdate.setUTCDate(nextdate.getUTCDate() + weekmodifier);
-        if(isAfterWeeklyReset && isAfterDailyReset){
+        if (isAfterWeeklyReset && isAfterDailyReset) {
             nextdate.setUTCDate(nextdate.getUTCDate() + 7);
         }
     } else {
@@ -797,22 +797,22 @@ const countDown = function (timeFrame) {
         Math.floor(remainingtime % 60) //s
     ];
 
-    if(timeFrame == 'weeklies'){
+    if (timeFrame == 'weeklies') {
         document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '0d ') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
     } else {
         document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
-    }    
+    }
 };
 
-const populateNavigation = function(index, character){
+const populateNavigation = function (index, character) {
     let navigation = document.getElementById('character_dropdown');
     charNavigation = '';
-    if(index > 0){
-        charNavigation +='<div class="dropdown-divider"></div>';
+    if (index > 0) {
+        charNavigation += '<div class="dropdown-divider"></div>';
     }
-    charNavigation +='<h6 class="dropdown-header nav-char">'+character+'</h6>';
-    for(let timeframe in timeframesRoster){
-        charNavigation += '<a href="#'+character+'_'+timeframesCharacter[timeframe]+'" class="dropdown-item sub-color" id="'+character+'_'+timeframesCharacter[timeframe]+'_nav" style="text-transform: capitalize;">'+timeframesRoster[timeframe]+'</a>';
+    charNavigation += '<h6 class="dropdown-header nav-char">' + character + '</h6>';
+    for (let timeframe in timeframesRoster) {
+        charNavigation += '<a href="#' + character + '_' + timeframesCharacter[timeframe] + '" class="dropdown-item sub-color" id="' + character + '_' + timeframesCharacter[timeframe] + '_nav" style="text-transform: capitalize;">' + timeframesRoster[timeframe] + '</a>';
     }
     navigation.innerHTML += charNavigation;
 }
@@ -831,9 +831,10 @@ const charactersFunction = function () {
         //populate list of characters
         for (let character of charactersArray) {
             characterBody.innerHTML +=
-                '<div class="table_container_characters">'+
+                '<div class="table_container_characters">' +
                 '<div id="' + character + '_dailychar" class="table_container ' + character + '_dailychar_table">' +
-                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="dailychar" data-character="'+character+'" data-x="0" data-y="0">' +
+                '<input type="checkbox" class="theme-switch" />' +
+                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="dailychar" data-character="' + character + '" data-x="0" data-y="0">' +
                 '<thead>' +
                 '<tr>' +
                 '<th>' + character + ' Daily</th>' +
@@ -849,9 +850,10 @@ const charactersFunction = function () {
                 '</thead>' +
                 '<tbody></tbody>' +
                 '</table>' +
-                '</div>'+
+                '</div>' +
                 '<div id="' + character + '_weeklychar" class="table_container ' + character + '_weeklychar_table">' +
-                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="weeklychar" data-character="'+character+'" data-x="0" data-y="0">' +
+                '<input type="checkbox" class="theme-switch" />' +
+                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="weeklychar" data-character="' + character + '" data-x="0" data-y="0">' +
                 '<thead>' +
                 '<tr>' +
                 '<th>' + character + ' Weekly</th>' +
@@ -867,7 +869,7 @@ const charactersFunction = function () {
                 '</thead>' +
                 '<tbody></tbody>' +
                 '</table>' +
-                '</div>'+
+                '</div>' +
                 '</div>'
         }
     }
@@ -879,12 +881,12 @@ const charactersFunction = function () {
         deleteButton.addEventListener('click', function (e) {
             e.preventDefault();
             charactersArray = charactersArray.filter(e => e != this.dataset.character);
-            if(charactersArray.length == 0){
+            if (charactersArray.length == 0) {
                 storage.removeItem('characters');
-            }else{
+            } else {
                 storage.setItem('characters', charactersArray.join(','));
             }
-            
+
             let prefix = this.dataset.character == 'default' ? '' : (this.dataset.character + '-');
             for (const timeFrame of timeframesCharacter) {
                 let data = window[timeFrame];
@@ -963,11 +965,11 @@ const layouts = function () {
 
 const positions = function () {
     keys = Object.keys(localStorage), i = keys.length;
-    while(i--){
+    while (i--) {
         var item = keys[i];
-        if(item.startsWith('pos_')){
+        if (item.startsWith('pos_')) {
             var element = document.getElementById(item.substring(4))
-            if(element != null){
+            if (element != null) {
                 element.style.transform = localStorage.getItem(keys[i])
             }
         }
@@ -980,9 +982,9 @@ const resetPositions = function () {
         e.preventDefault();
         eventTracking("reset", "layout", "");
         keys = Object.keys(localStorage), i = keys.length;
-        while(i--){
+        while (i--) {
             var item = keys[i];
-            if(item.startsWith('pos_')){
+            if (item.startsWith('pos_')) {
                 localStorage.removeItem(item);
             }
         }
@@ -1017,7 +1019,7 @@ const dropdownMenuHelper = function () {
  * @param {string} category of the event
  * @param {string} label optional extra information about the event
  */
-const eventTracking = function(action, category, label){
+const eventTracking = function (action, category, label) {
     gtag('event', action, {
         'event_category': category,
         'event_label': label
@@ -1027,18 +1029,18 @@ const eventTracking = function(action, category, label){
 /**
  * Exports current localStorage to file
  */
-const exportData = function(){
+const exportData = function () {
     window.localStorage.setItem("dailyArk-export", 1);
     var exportJson = JSON.stringify(window.localStorage);
-    var jsonBlob = new Blob([exportJson], {type:'application/json'});
-    var fileName = "dailyArk-export-"+new Date();
+    var jsonBlob = new Blob([exportJson], {type: 'application/json'});
+    var fileName = "dailyArk-export-" + new Date();
 
     var download = document.createElement("a");
     download.download = fileName;
     download.innerHTML = "Download File";
-    if(window.webkitURL != null){
+    if (window.webkitURL != null) {
         download.href = window.webkitURL.createObjectURL(jsonBlob);
-    }else{
+    } else {
         download.href = window.URL.createObjectURL(jsonBlob);
         download.onclick = destroyClickedElement;
         download.style.display = "none";
@@ -1051,34 +1053,40 @@ const exportData = function(){
 /**
  * Imports save file to localStorage
  */
-const importData = function(){
+const importData = function () {
     var input = document.getElementById('import');
 
     input.onchange = event => {
         var file = event.target.files[0];
-        
+
         var reader = new FileReader();
         reader.readAsText(file, "UTF-8");
 
         reader.onload = readerEvent => {
             var content = readerEvent.target.result;
             json = JSON.parse(content);
-            if(json["dailyArk-export"] == 1){
+            if (json["dailyArk-export"] == 1) {
                 storage.clear();
-                for(var key in json){
+                for (var key in json) {
                     storage.setItem(key, json[key]);
                 }
-                if(!alert("DailyArk data succesfully imported.")){
+                if (!alert("DailyArk data succesfully imported.")) {
                     window.location.reload();
                 }
-            }
-            else {
+            } else {
                 alert("This is not a valid DailyArk file.");
             }
         }
     }
     input.click();
 }
+
+const themeSwitcher = function(state) {
+    for (const switcher of document.querySelectorAll('.theme-switch')){
+        switcher.checked = state;
+    }
+}
+
 
 window.onload = function () {
     charactersFunction();
@@ -1114,6 +1122,27 @@ window.onload = function () {
 
     dropdownMenuHelper();
     tableEventListeners();
+
+    const themeSwitch = document.querySelector('.main-switch');
+    console.log(themeSwitch);
+    if (localStorage.getItem('switchedTheme') !== null) {
+        themeSwitch.checked = localStorage.getItem('switchedTheme') === 'true';
+        themeSwitcher(true);
+    }else{
+        themeSwitcher(false);
+    }
+
+    themeSwitch.addEventListener('change', function (e) {
+        if (e.currentTarget.checked === true) {
+            // Add item to localstorage
+            localStorage.setItem('switchedTheme', 'true');
+            themeSwitcher(true);
+        } else {
+            // Remove item if theme is switched back to normal
+            localStorage.removeItem('switchedTheme');
+            themeSwitcher(false);
+        }
+    });
 
     setInterval(function () {
         for (const timeFrame of timeframesRoster) {
