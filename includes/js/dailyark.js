@@ -982,11 +982,46 @@ const resetPositions = function () {
         e.preventDefault();
         eventTracking("reset", "layout", "");
         keys = Object.keys(localStorage), i = keys.length;
+
+        // Positions
         while (i--) {
             var item = keys[i];
             if (item.startsWith('pos_')) {
                 localStorage.removeItem(item);
             }
+        }
+
+        // Tasks
+        let charactersStored = storage.getItem('characters');
+        if (charactersStored !== null) {
+            let characterArray = charactersStored.split(',');
+            for (const index in characterArray) {
+                character = characterArray[index];
+                for (const timeFrame of timeframesCharacter) {
+                    tableRows = document.querySelectorAll('#' + character + '_' + timeFrame + '_table tbody tr');
+                    for (let rowTarget of tableRows) {
+                        let itemState;
+                        itemState = storage.getItem(character + '-' + rowTarget.dataset.task) ?? 'false';
+                
+                        if (itemState != 'hide') {
+                            storage.removeItem(character + '-' + rowTarget.dataset.task);
+                        }
+                    }
+
+                    storage.removeItem(character + '-' + timeFrame + '-updated');
+                }
+            }
+        }
+
+        for (const timeFrame of timeframesRoster) {            
+            tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+            for (let rowTarget of tableRows) {
+                itemState = storage.getItem(rowTarget.dataset.task)
+                if (itemState != 'hide') {
+                    storage.removeItem(rowTarget.dataset.task);
+                }
+            }
+            storage.removeItem(timeFrame + '-updated');
         }
 
         window.location.reload();
