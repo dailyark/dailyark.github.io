@@ -63,13 +63,6 @@ var dailies = {
         short: true,
         desc: "Once per day (daily quest to obtain key).",
         img: "anguished isle"
-    },
-    "arkesia-gp": {
-        task: "Arkesia Grand Prix",
-        url: "#",
-        short: true,
-        desc: "On the even hours.",
-        img: "arkesia coin"
     }
 };
 
