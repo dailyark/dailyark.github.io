@@ -235,12 +235,6 @@ var weeklychar = {
         desc: "Supply replenishes on weekly reset.",
         img: "chaos dungeon"
     },
-    "chaos-line": {
-        task: "Chaos Line",
-        url: "#",
-        desc: "Twice per week",
-        img: "guardian raid"
-    },
 }
 
 var weeklies = {
@@ -286,19 +280,18 @@ var weeklies = {
         desc: "Determined by the occupying guild.",
         img: "pvp island"
     },
-    "arkesia-gp-vendor": {
-        task: "Arkesia Grand Prix Vendor",
-        url: "#",
-        short: true,
-        desc: "Supply replenishes on weekly reset.",
-        img: "arkesia coin"
-    },
     "event-guardian-raid-vendor": {
         task: "Event Guardian Raid Vendor",
         url: "#",
         short: true,
         desc: "Supply replenishes on weekly reset.",
         img: "winter"
+    },
+        "chaos-line": {
+        task: "Chaos Line",
+        url: "#",
+        desc: "Twice per week",
+        img: "guardian raid"
     },
 };
 
