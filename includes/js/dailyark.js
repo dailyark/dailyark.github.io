@@ -235,6 +235,12 @@ var weeklychar = {
         desc: "Supply replenishes on weekly reset.",
         img: "chaos dungeon"
     },
+    "chaos-line": {
+        task: "Chaos Line",
+        url: "#",
+        desc: "Twice per week",
+        img: "guardian raid"
+    },
 }
 
 var weeklies = {
