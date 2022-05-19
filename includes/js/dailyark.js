@@ -63,7 +63,14 @@ var dailies = {
         short: true,
         desc: "Once per day (daily quest to obtain key).",
         img: "anguished isle"
-    }
+    },
+    "wild-wing-island": {
+        task: "Wild Wing Island",
+        url: "#",
+        short: true,
+        desc: "Wild Wing Island",
+        img: "island"
+    },
 };
 
 var dailychar = {
@@ -94,13 +101,6 @@ var dailychar = {
         short: true,
         desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.",
         img: "guardian raids"
-    },
-    "guardian-event": {
-        task: "Event Guardian Raid",
-        url: "#",
-        short: true,
-        desc: "Fight 3 guardians at the same time with scaled gear",
-        img: "winter"
     },
     "una-daily": {
         task: "Una Daily 1",
@@ -201,7 +201,7 @@ var weeklychar = {
         img: "abyssal"
     },
     "legion-raid": {
-        task: "Legion Raid (unavailable on NA/EU)",
+        task: "Legion Raid",
         url: "https://papunika.com/legion-raids/",
         short: true,
         desc: "1 per week (shared between difficulties).",
@@ -227,7 +227,7 @@ var weeklychar = {
         short: true,
         desc: "Supply replenishes on weekly reset.",
         img: "chaos dungeon"
-    },
+    }
 }
 
 var weeklies = {
@@ -273,18 +273,18 @@ var weeklies = {
         desc: "Determined by the occupying guild.",
         img: "pvp island"
     },
-    "event-guardian-raid-vendor": {
-        task: "Event Guardian Raid Vendor",
-        url: "#",
-        short: true,
-        desc: "Supply replenishes on weekly reset.",
-        img: "winter"
-    },
         "chaos-line": {
         task: "Chaos Line",
         url: "#",
         desc: "Twice per week",
         img: "guardian raid"
+    },
+    "wild-wing-island-exchange": {
+        task: "Wild Wing Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset.",
+        img: "island"
     },
 };
 
