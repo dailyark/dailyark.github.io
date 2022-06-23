@@ -62,11 +62,4 @@ var dailychar = {
         desc: "Free pirates on Kalthertz. (free the ones that cost 600 or 900 coins, most cost effective.)",
         img: "pirate coin"
     },
-    "festival-success": {
-        task: "Festival's Success",
-        url: "#",
-        short: true,
-        desc: "Wild Wing Island",
-        img: "island"
-    },
 };
