@@ -65,11 +65,4 @@ var weeklies = {
         desc: "Twice per week",
         img: "guardian raid"
     },
-    "wild-wing-island-exchange": {
-        task: "Wild Wing Exchange",
-        url: "#",
-        short: true,
-        desc: "Supply replenishes on weekly reset.",
-        img: "island"
-    },
 };
