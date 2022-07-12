@@ -55,6 +55,13 @@ var weeklychar = {
         desc: "1 per week (shared between difficulties).",
         img: "legion"
     },
+    "g-v-e": {
+        task: "Raid Match",
+        url: "https://lost-ark.maxroll.gg/resources/gvg-islands-guide",
+        short: true,
+        desc: "Once per week challenge (Raid Match) to kill a raid boss for Guild Contribution and Bloodstones.",
+        img: "sylmael bloodstone"
+    },
     "merchant-ship-exchange": {
         task: "Merchant Ship Exchange",
         url: "#",
