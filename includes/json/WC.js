@@ -41,8 +41,15 @@ var weeklychar = {
         desc: "1 per week per Abyss Raid.",
         img: "abyssal"
     },
-    "legion-raid": {
-        task: "Legion Raid",
+    "valtan-legion-raid": {
+        task: "Valtan Legion Raid",
+        url: "https://papunika.com/legion-raids/",
+        short: true,
+        desc: "1 per week (shared between difficulties).",
+        img: "legion"
+    },
+    "vykas-legion-raid": {
+        task: "Vykas Legion Raid",
         url: "https://papunika.com/legion-raids/",
         short: true,
         desc: "1 per week (shared between difficulties).",
