@@ -28,7 +28,21 @@ var weeklychar = {
         img: "una weekly"
     },
     "guild-weekly": {
-        task: "Guild Weekly",
+        task: "Guild Weekly 1",
+        url: "#",
+        short: true,
+        desc: "Depends what the guild officers pick.",
+        img: "guild research"
+    },
+        "guild-weekly-2": {
+        task: "Guild Weekly 2",
+        url: "#",
+        short: true,
+        desc: "Depends what the guild officers pick.",
+        img: "guild research"
+    },
+        "guild-weekly-3": {
+        task: "Guild Weekly 3",
         url: "#",
         short: true,
         desc: "Depends what the guild officers pick.",
