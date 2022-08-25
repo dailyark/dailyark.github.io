@@ -65,4 +65,18 @@ var weeklies = {
         desc: "Twice per week",
         img: "guardian raid"
     },
+    "leaf-exchange": {
+        task: "Maharaka Leaf Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset.",
+        img: "donation"
+    },
+    "illusion-token-exchange": {
+        task: "Winter Illusion Token Exchange",
+        url: "#",
+        short: true,
+        desc: "Supply replenishes on weekly reset.",
+        img: "winter"
+    }
 };
