@@ -62,4 +62,11 @@ var dailychar = {
         desc: "Free pirates on Kalthertz. (free the ones that cost 600 or 900 coins, most cost effective.)",
         img: "pirate coin"
     },
+    "event-guardian-raid": {
+        task: "Event Guardian Raid",
+        url: "https://papunika.com/guardian-subjugations/",
+        short: true,
+        desc: "Fight 3 guardians at the same time.",
+        img: "guardian raids"
+    },
 };
