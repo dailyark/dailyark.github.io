@@ -69,6 +69,13 @@ var weeklychar = {
         desc: "1 per week (shared between difficulties).",
         img: "legion"
     },
+    "kakul-saydon-legion-raid": {
+        task: "Kakul Saydon Legion Raid",
+        url: "https://papunika.com/legion-raids/",
+        short: true,
+        desc: "1 per week (shared between difficulties).",
+        img: "legion"
+    },
     "g-v-e": {
         task: "Raid Match",
         url: "https://lost-ark.maxroll.gg/resources/gvg-islands-guide",
