@@ -21,3 +21,4 @@ Or join the DailyArk [Discord](https://discord.gg/KW7nAzwU6W)
 
 ## Credits
 * Original Source code by [DailyScape](https://dailyscape.github.io)
+* Forked from [DailyArk](https://dailyark.github.io)
