@@ -81,7 +81,7 @@ var weeklychar = {
       "url":"https://maxroll.gg/lost-ark/legion-raids/brelshaza-gate-1",
       "short":true,
       "desc":"Brelshaza is the fourth Legion Raid in Lost Ark.",
-      "img":"legion.png"
+      "img":"legion"
    },
    "g-v-e":{
       "task":"Raid Match",

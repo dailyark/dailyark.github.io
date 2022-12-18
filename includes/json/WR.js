@@ -70,6 +70,6 @@ var weeklies = {
       "url":"https://www.mtmmo.com/news/1044--lost-ark-festivity-island-guide-2022-date-rewards-quests-tips-of-lost-ark-winter-christmas-event",
       "short":true,
       "desc":"The Festivity Island has been added to Lost Ark in the December Update to hold the Christmas event and celebrate the holiday season with players.",
-      "img":"winter.png"
+      "img":"winter"
    }
 }
