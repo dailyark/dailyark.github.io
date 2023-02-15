@@ -110,5 +110,12 @@ var weeklychar = {
       "short":true,
       "desc":"Supply replenishes on weekly reset.",
       "img":"chaos dungeon"
-   }
+   },
+   "Gold Event Shop": {
+        "task": "Gold Event Shop",
+        "url": "https://www.playlostark.com/en-us/news/articles/first-anniversary-celebration-release-notes",
+        "short": true,
+        "desc": "An Event Gold Shop where players can exchange Gold for valuable rewards.",
+        "img": "donation"
+    },
 }
