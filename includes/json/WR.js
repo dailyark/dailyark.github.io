@@ -65,11 +65,18 @@ var weeklies = {
       "desc":"Twice per week",
       "img":"guardian raid"
    },
-   "Joytide Event Exchange":{
-      "task":"Joytide Event Exchange",
-      "url":"https://www.mtmmo.com/news/1044--lost-ark-festivity-island-guide-2022-date-rewards-quests-tips-of-lost-ark-winter-christmas-event",
-      "short":true,
-      "desc":"The Festivity Island has been added to Lost Ark in the December Update to hold the Christmas event and celebrate the holiday season with players.",
-      "img":"winter"
-   }
+   "rowen-weekly": {
+        "task": "Rowen Weekly Activities",
+        "url": "https://www.mmogah.com/news/lost-ark/lost-ark-guide-rewards-of-the-new-continent-rowen",
+        "short": true,
+        "desc": "Ranks for the Factions are divided into 15 tiers and can be earned by participating in activities to get Faction XP, such as killing the opposing faction's members and participating in daily, weekly, and co-op quests.",
+        "img": "pvp island"
+    },
+   "event-exchange": {
+        "task": "Event Exchange",
+        "url": "https://www.playlostark.com/en-us/news/articles/first-anniversary-celebration",
+        "short": true,
+        "desc": "There are three different cards, which can each be redeemed for a variety of weekly and roster level rewards that include skins, honing materials, card packs, and much more!",
+        "img": "merchant"
+    },
 }
