@@ -6,6 +6,13 @@ var weeklychar = {
       "desc":"Once per week per Abyss Dungeon.</br>You can only complete one difficulty per week.",
       "img":"abyss dungeon"
    },
+   "kayangel-abyssal-dungeon": {
+        task: "Kayangel Abyssal Dungeon",
+        url: "https://maxroll.gg/lost-ark/abyssal-dungeons/kayangel-gate-1",
+        short: true,
+        desc: "Kayangel is the new Abyssal Dungeon introduced in Elgacia.",
+        img: "abyss dungeon"
+    },
    "una-weekly":{
       "task":"Una Weekly 1",
       "url":"https://papunika.com/unas-tasks-overview/",
