@@ -132,4 +132,11 @@ var weeklychar = {
         "desc": "Exchange boss tokens for items at the Legion Raid Exchange Merchant",
         "img": "merchant"
     },
+      "Gold Event Shop": {
+        "task": "Gold Event Shop",
+        "url": "https://www.playlostark.com/en-us/news/articles/first-anniversary-celebration-release-notes",
+        "short": true,
+        "desc": "An Event Gold Shop where players can exchange Gold for valuable rewards.",
+        "img": "donation"
+    },
 }
