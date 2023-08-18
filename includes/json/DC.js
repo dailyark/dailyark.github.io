@@ -20,13 +20,6 @@ var dailychar = {
         desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.",
         img: "guardian raids"
     },
-    "guardian-raid-2": {
-        task: "Guardian Raid 2",
-        url: "https://papunika.com/guardian-subjugations/",
-        short: true,
-        desc: "Uses 1 Guardian Soul per harvest.</br>Gain 2 Guardian Souls per day.",
-        img: "guardian raids"
-    },
     "una-daily": {
         task: "Una Daily 1",
         url: "https://papunika.com/unas-tasks-overview/",
