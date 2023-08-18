@@ -90,6 +90,13 @@ var weeklychar = {
       "desc":"Brelshaza is the fourth Legion Raid in Lost Ark.",
       "img":"legion"
    },
+   "Akkan Legion Raid": {
+        "task": "Akkan Legion Raid",
+        "url": "https://maxroll.gg/lost-ark/legion-raids/akkan-gate-1",
+        "short": true,
+        "desc": "Akkan is the new Legion Raid introduced in Elgacia.",
+        "img": "legion"
+    },
    "g-v-e":{
       "task":"Raid Match",
       "url":"https://lost-ark.maxroll.gg/resources/gvg-islands-guide",
@@ -118,11 +125,11 @@ var weeklychar = {
       "desc":"Supply replenishes on weekly reset.",
       "img":"chaos dungeon"
    },
-   "Gold Event Shop": {
-        "task": "Gold Event Shop",
-        "url": "https://www.playlostark.com/en-us/news/articles/first-anniversary-celebration-release-notes",
+   "Legion Raid Exchange": {
+        "task": "Legion Raid Exchange",
+        "url": "#",
         "short": true,
-        "desc": "An Event Gold Shop where players can exchange Gold for valuable rewards.",
-        "img": "donation"
+        "desc": "Exchange boss tokens for items at the Legion Raid Exchange Merchant",
+        "img": "merchant"
     },
 }
