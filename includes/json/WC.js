@@ -13,6 +13,13 @@ var weeklychar = {
         desc: "Kayangel is the new Abyssal Dungeon introduced in Elgacia.",
         img: "abyss dungeon"
     },
+   "ivory-tower-abyssal-dungeon": {
+        task: "Ivory Tower Abyssal Dungeon",
+        url: "https://maxroll.gg/lost-ark/abyssal-dungeons/ivory-tower-gate-1",
+        short: true,
+        desc: "Ivory Tower is the new Abyssal Dungeon introduced in Voldis.",
+        img: "abyss dungeon"
+    },
    "una-weekly":{
       "task":"Una Weekly 1",
       "url":"https://papunika.com/unas-tasks-overview/",
