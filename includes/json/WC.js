@@ -104,6 +104,13 @@ var weeklychar = {
         "desc": "Akkan is the new Legion Raid introduced in Elgacia.",
         "img": "legion"
     },
+   "Thaemine Legion Raid": {
+        task: "Thaemine Legion Raid",
+        url: "https://maxroll.gg/lost-ark/legion-raids/thaemine-gate-1",
+        short: true,
+        desc: "Thaemine is the commander of the Darkness Legion and one of Kazeros' six Legion Commanders.",
+        img: "legion"
+    },
    "g-v-e":{
       "task":"Raid Match",
       "url":"https://lost-ark.maxroll.gg/resources/gvg-islands-guide",
