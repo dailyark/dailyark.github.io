@@ -111,6 +111,13 @@ var weeklychar = {
         desc: "Thaemine is the commander of the Darkness Legion and one of Kazeros' six Legion Commanders.",
         img: "legion"
     },
+   "Echidna Kazeros Raid": {
+        task: "Echidna Kazeros Raid",
+        url: "https://maxroll.gg/lost-ark/kazeros-raids/echidna-gate-1",
+        short: true,
+        desc: "Arriving with South Kurzan is the first Kazeros Raid, an all new set of raids that players will have to conquer in order to someday face Kazeros himself.",
+        img: "legion"
+    },
    "g-v-e":{
       "task":"Raid Match",
       "url":"https://lost-ark.maxroll.gg/resources/gvg-islands-guide",
